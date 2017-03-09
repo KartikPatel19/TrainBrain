@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.deucat.kartik.trainbrain.Route.RouteClass;
 import com.deucat.kartik.trainbrain.Route.TrainClass;
@@ -89,8 +88,7 @@ public class TrainRouteActivity extends AppCompatActivity {
 
     private void updateUI() {
         mTrainNameTv.setText(trainClass.getNameOfTrain());
-
-
+        
     }
 
     private TrainClass parshTrainClass(String JsonData) throws JSONException {

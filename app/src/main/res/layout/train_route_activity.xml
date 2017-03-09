@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.deucat.kartik.trainbrain.TrainRouteActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ECEFF1"
+        android:id="@+id/themedLayout">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        app:srcCompat="@drawable/train_rout_fun_img"
+        android:contentDescription="trainImage"/>
+
+    <EditText
+        android:id="@+id/trainNumberET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/train_number"
+        android:inputType="number"
+        android:layout_above="@+id/linkToTheWeb"
+        android:layout_toEndOf="@+id/imageView"/>
+
+    <TextView
+        android:id="@+id/linkToTheWeb"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView"
+        android:text="@string/ask_dont_know"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/nameOfTrainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/themedLayout">
+
+        <TextView
+            android:id="@+id/nameOfTheTrainTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="Ankleshwar Super Fast Satabdi Express"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/nameOfTrainLayout"/>
+
+
+</RelativeLayout>

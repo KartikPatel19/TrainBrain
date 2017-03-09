@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TrainBrain</string>
+    <string name="ask_dont_know">Dont Know Your Train Number?</string>
+    <string name="train_number">Train Number</string>
+</resources>
