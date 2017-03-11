@@ -1,6 +1,6 @@
 package com.deucat.kartik.trainbrain.PNR;
 
-public class PNRClass {
+ class PNRClass {
 
     private String mTrainName;
     private String mTrainNumber;
@@ -12,13 +12,13 @@ public class PNRClass {
     private String mToStationName;
     private String mReservationName;
 
-    public PNRClass() { }
+     PNRClass() { }
 
     public String getTrainName() {
         return mTrainName;
     }
 
-    public void setTrainName(String trainName) {
+     void setTrainName(String trainName) {
         mTrainName = trainName;
     }
 
@@ -26,7 +26,7 @@ public class PNRClass {
         return mTrainNumber;
     }
 
-    public void setTrainNumber(String trainNumber) {
+     void setTrainNumber(String trainNumber) {
         mTrainNumber = trainNumber;
     }
 
@@ -34,7 +34,7 @@ public class PNRClass {
         return mDOJ;
     }
 
-    public void setDOJ(String DOJ) {
+     void setDOJ(String DOJ) {
         mDOJ = DOJ;
     }
 
@@ -42,7 +42,7 @@ public class PNRClass {
         return mClassName;
     }
 
-    public void setClassName(String className) {
+     void setClassName(String className) {
         mClassName = className;
     }
 
@@ -50,7 +50,7 @@ public class PNRClass {
         return mTotalPassanger;
     }
 
-    public void setTotalPassanger(int totalPassanger) {
+     void setTotalPassanger(int totalPassanger) {
         mTotalPassanger = totalPassanger;
     }
 
@@ -58,7 +58,7 @@ public class PNRClass {
         return mFromStationName;
     }
 
-    public void setFromStationName(String fromStationName) {
+     void setFromStationName(String fromStationName) {
         mFromStationName = fromStationName;
     }
 
@@ -66,7 +66,7 @@ public class PNRClass {
         return mBoardingPointName;
     }
 
-    public void setBoardingPointName(String boardingPointName) {
+     void setBoardingPointName(String boardingPointName) {
         mBoardingPointName = boardingPointName;
     }
 
@@ -74,7 +74,7 @@ public class PNRClass {
         return mToStationName;
     }
 
-    public void setToStationName(String toStationName) {
+     void setToStationName(String toStationName) {
         mToStationName = toStationName;
     }
 
@@ -82,7 +82,7 @@ public class PNRClass {
         return mReservationName;
     }
 
-    public void setReservationName(String reservationName) {
+     void setReservationName(String reservationName) {
         mReservationName = reservationName;
     }
 }

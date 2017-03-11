@@ -68,7 +68,6 @@ public class TrainRouteActivity extends AppCompatActivity {
                 trainNumber = mEditText.getText().toString();
                 url = "http://api.railwayapi.com/route/train/" + trainNumber + "/apikey/o9je768f/";
 
-                Toast.makeText(TrainRouteActivity.this, url, Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onClick: "+url);
                 if(trainNumber.length()>5 || trainNumber.length()<5){
                     Toast.makeText(TrainRouteActivity.this, "PLease Enter correct number of train", Toast.LENGTH_SHORT).show();
@@ -88,7 +87,7 @@ public class TrainRouteActivity extends AppCompatActivity {
     private void getJsonDataOverTheInternet(String url) throws IOException {
 
         OkHttpClient okHttpClient = new OkHttpClient();
-        final Request request = new Request.Builder().url(url).build();
+        Request request = new Request.Builder().url(url).build();
 
         Call call = okHttpClient.newCall(request);
         call.enqueue(new Callback() {
