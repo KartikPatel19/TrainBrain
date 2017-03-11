@@ -1,12 +1,20 @@
-package com.deucat.kartik.trainbrain;
+package com.deucat.kartik.trainbrain.Route;
 
+
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.deucat.kartik.trainbrain.Route.RouteClass;
-import com.deucat.kartik.trainbrain.Route.TrainClass;
+import com.deucat.kartik.trainbrain.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,23 +31,57 @@ import okhttp3.Response;
 public class TrainRouteActivity extends AppCompatActivity {
     private static final String TAG = "TrainRouteActivity";
     TrainClass trainClass = new TrainClass();
+    RouteClass[] mRouteClasses;
 
+    String trainNumber = "";
+    String url = "http://api.railwayapi.com/route/train/" + trainNumber + "/apikey/o9je768f/";
+
+
+    EditText mEditText;
+    Button mButton;
     TextView mTrainNameTv;
+    RecyclerView mRecyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.train_route_activity);
 
-        mTrainNameTv = (TextView)findViewById(R.id.nameOfTheTrainTV);
+        mTrainNameTv = (TextView) findViewById(R.id.nameOfTheTrainTV);
+        mRecyclerView = (RecyclerView) findViewById(R.id.trainRouteRecyclerView);
+        mEditText = (EditText) findViewById(R.id.trainNumberET);
+        mButton = (Button) findViewById(R.id.okButton);
 
 
-        String url = "http://api.railwayapi.com/route/train/12046/apikey/o9je768f/";
+
         try {
             getJsonDataOverTheInternet(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                trainNumber = mEditText.getText().toString();
+                url = "http://api.railwayapi.com/route/train/" + trainNumber + "/apikey/o9je768f/";
+
+                Toast.makeText(TrainRouteActivity.this, url, Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: "+url);
+                if(trainNumber.length()>5 || trainNumber.length()<5){
+                    Toast.makeText(TrainRouteActivity.this, "PLease Enter correct number of train", Toast.LENGTH_SHORT).show();
+                }
+
+                try {
+                    getJsonDataOverTheInternet(url);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
     }
 
@@ -63,7 +105,7 @@ public class TrainRouteActivity extends AppCompatActivity {
                     Log.d(TAG, "onResponse: " + JSONData);
                     if (response.isSuccessful()) {
 
-                        parshRouteClass(JSONData);
+                        mRouteClasses = parshRouteClass(JSONData);
                         parshTrainClass(JSONData);
 
                         runOnUiThread(new Runnable() {
@@ -74,7 +116,7 @@ public class TrainRouteActivity extends AppCompatActivity {
                         });
 
 
-                    }else {
+                    } else {
                         Log.d(TAG, "onResponse: Chut gay samjo :(");
                     }
                 } catch (JSONException | IOException e) {
@@ -88,7 +130,12 @@ public class TrainRouteActivity extends AppCompatActivity {
 
     private void updateUI() {
         mTrainNameTv.setText(trainClass.getNameOfTrain());
-        
+        RouteClassAdapter mAdapter = new RouteClassAdapter(mRouteClasses);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
+
+        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setAdapter(mAdapter);
+
     }
 
     private TrainClass parshTrainClass(String JsonData) throws JSONException {
@@ -149,4 +196,10 @@ public class TrainRouteActivity extends AppCompatActivity {
         return routeClasses;
     }
 
+    public void openHttp(View view) {
+
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.prokerala.com/travel/indian-railway/trains/"));
+        startActivity(myIntent);
+
+    }
 }

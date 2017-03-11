@@ -11,7 +11,7 @@ public class RouteClass {
 
     public RouteClass() {    }
 
-    public int getIndexNumber() {
+    int getIndexNumber() {
         return mIndexNumber;
     }
 
@@ -19,7 +19,7 @@ public class RouteClass {
         mIndexNumber = indexNumber;
     }
 
-    public int getDistance() {
+     int getDistance() {
         return mDistance;
     }
 
@@ -27,7 +27,7 @@ public class RouteClass {
         mDistance = distance;
     }
 
-    public String getState() {
+     String getState() {
         return mState;
     }
 
@@ -35,7 +35,7 @@ public class RouteClass {
         mState = state;
     }
 
-    public String getSchArr() {
+     String getSchArr() {
         return mSchArr;
     }
 
@@ -43,7 +43,7 @@ public class RouteClass {
         mSchArr = schArr;
     }
 
-    public String getSchDep() {
+     String getSchDep() {
         return mSchDep;
     }
 
@@ -51,7 +51,7 @@ public class RouteClass {
         mSchDep = schDep;
     }
 
-    public String getStationName() {
+     String getStationName() {
         return mStationName;
     }
 
