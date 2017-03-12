@@ -1,44 +1,45 @@
 package com.deucat.kartik.trainbrain.PNR;
 
- class PassengerClass {
+class PassengerClass {
 
     private int mIndexNumber;
     private String mBookingStatus;
     private String mCurruntStatus;
     private int mCochePosition;
 
+
     PassengerClass() {
     }
 
-    public int getIndexNumber() {
+    int getIndexNumber() {
         return mIndexNumber;
     }
 
-     void setIndexNumber(int indexNumber) {
+    void setIndexNumber(int indexNumber) {
         mIndexNumber = indexNumber;
     }
 
-    public String getBookingStatus() {
+    String getBookingStatus() {
         return mBookingStatus;
     }
 
-     void setBookingStatus(String bookingStatus) {
+    void setBookingStatus(String bookingStatus) {
         mBookingStatus = bookingStatus;
     }
 
-    public String getCurruntStatus() {
+    String getCurruntStatus() {
         return mCurruntStatus;
     }
 
-     void setCurruntStatus(String curruntStatus) {
+    void setCurruntStatus(String curruntStatus) {
         mCurruntStatus = curruntStatus;
     }
 
-    public int getCochePosition() {
+    int getCochePosition() {
         return mCochePosition;
     }
 
-     void setCochePosition(int cochePosition) {
+    void setCochePosition(int cochePosition) {
         mCochePosition = cochePosition;
     }
 }

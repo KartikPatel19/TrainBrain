@@ -1,6 +1,6 @@
 package com.deucat.kartik.trainbrain.PNR;
 
- class PNRClass {
+class PNRClass {
 
     private String mTrainName;
     private String mTrainNumber;
@@ -11,78 +11,88 @@ package com.deucat.kartik.trainbrain.PNR;
     private String mBoardingPointName;
     private String mToStationName;
     private String mReservationName;
+    private boolean mError;
 
-     PNRClass() { }
+    PNRClass() {
+    }
 
-    public String getTrainName() {
+    boolean isError() {
+        return mError;
+    }
+
+    void setError(boolean error) {
+        mError = error;
+    }
+
+    String getTrainName() {
         return mTrainName;
     }
 
-     void setTrainName(String trainName) {
+    void setTrainName(String trainName) {
         mTrainName = trainName;
     }
 
-    public String getTrainNumber() {
+    String getTrainNumber() {
         return mTrainNumber;
     }
 
-     void setTrainNumber(String trainNumber) {
+    void setTrainNumber(String trainNumber) {
         mTrainNumber = trainNumber;
     }
 
-    public String getDOJ() {
+    String getDOJ() {
         return mDOJ;
     }
 
-     void setDOJ(String DOJ) {
+    void setDOJ(String DOJ) {
         mDOJ = DOJ;
     }
 
-    public String getClassName() {
+    String getClassName() {
         return mClassName;
     }
 
-     void setClassName(String className) {
+    void setClassName(String className) {
         mClassName = className;
     }
 
-    public int getTotalPassanger() {
+    int getTotalPassanger() {
         return mTotalPassanger;
     }
 
-     void setTotalPassanger(int totalPassanger) {
+    void setTotalPassanger(int totalPassanger) {
         mTotalPassanger = totalPassanger;
     }
 
-    public String getFromStationName() {
+    String getFromStationName() {
         return mFromStationName;
     }
 
-     void setFromStationName(String fromStationName) {
+    void setFromStationName(String fromStationName) {
         mFromStationName = fromStationName;
     }
 
-    public String getBoardingPointName() {
+    String getBoardingPointName() {
         return mBoardingPointName;
     }
 
-     void setBoardingPointName(String boardingPointName) {
+    void setBoardingPointName(String boardingPointName) {
         mBoardingPointName = boardingPointName;
     }
 
-    public String getToStationName() {
+    String getToStationName() {
         return mToStationName;
     }
 
-     void setToStationName(String toStationName) {
+    void setToStationName(String toStationName) {
         mToStationName = toStationName;
     }
 
-    public String getReservationName() {
+    String getReservationName() {
         return mReservationName;
     }
 
-     void setReservationName(String reservationName) {
+    void setReservationName(String reservationName) {
         mReservationName = reservationName;
     }
 }

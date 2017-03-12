@@ -143,28 +143,27 @@ public class TrainRouteActivity extends AppCompatActivity {
         JSONObject data = mainData.getJSONObject("train");
         trainClass.setNameOfTrain(data.getString("name"));
 
-        JSONArray classesOfTrain = data.getJSONArray("classes");
-        String[] classAva = new String[classesOfTrain.length()];
-        for (int i = 0; i < classesOfTrain.length(); i++) {
-            JSONObject code = classesOfTrain.getJSONObject(i);
-            String yOrN = code.getString("available");
-            if (yOrN.equals("Y")) {
-                classAva[i] = code.getString("class-code");
-            }
-        }
-        trainClass.setClassName(classAva);
-
-        JSONArray dayOfTheTrain = data.getJSONArray("days");
-        String[] dayAva = new String[dayOfTheTrain.length()];
-
-        for (int i = 0; i < dayOfTheTrain.length(); i++) {
-            JSONObject code = dayOfTheTrain.getJSONObject(i);
-            String yOrN = code.getString("runs");
-            if (yOrN.equals("Y")) {
-                dayAva[i] = code.getString("day-code");
-            }
-        }
-        trainClass.setDayName(dayAva);
+//        JSONArray classesOfTrain = data.getJSONArray("classes");
+//        String[] classAva = new String[classesOfTrain.length()];
+//        for (int i = 0; i < classesOfTrain.length(); i++) {
+//            JSONObject code = classesOfTrain.getJSONObject(i);
+//            String yOrN = code.getString("available");
+//            if (yOrN.equals("Y")) {
+//                classAva[i] = code.getString("class-code");
+//            }
+//        }
+//        trainClass.setClassName(classAva);
+//        JSONArray dayOfTheTrain = data.getJSONArray("days");
+//        String[] dayAva = new String[dayOfTheTrain.length()];
+//
+//        for (int i = 0; i < dayOfTheTrain.length(); i++) {
+//            JSONObject code = dayOfTheTrain.getJSONObject(i);
+//            String yOrN = code.getString("runs");
+//            if (yOrN.equals("Y")) {
+//                dayAva[i] = code.getString("day-code");
+//            }
+//        }
+//        trainClass.setDayName(dayAva);
 
         return trainClass;
     }
