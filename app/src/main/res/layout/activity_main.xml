@@ -34,6 +34,7 @@
 
     <ImageButton
         android:id="@+id/imageButton3"
+        android:onClick="openLiveTrain"
         android:layout_width="329dp"
         android:layout_height="165dp"
         app:srcCompat="@drawable/route_train_bg_station"

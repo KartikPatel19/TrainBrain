@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.deucat.kartik.trainbrain.LiveTrain.LiveTrain;
 import com.deucat.kartik.trainbrain.PNR.PNRActivity;
 import com.deucat.kartik.trainbrain.Route.TrainRouteActivity;
 
@@ -23,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openPnrIntent(View view) {
         Intent intent = new Intent(this, PNRActivity.class);
+        startActivity(intent);
+    }
+
+    public void openLiveTrain(View view) {
+        Intent intent = new Intent(this, LiveTrain.class);
         startActivity(intent);
     }
 }
