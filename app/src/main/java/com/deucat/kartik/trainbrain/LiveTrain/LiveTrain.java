@@ -5,8 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.deucat.kartik.trainbrain.AlertDilog;
+import com.deucat.kartik.trainbrain.PNR.PNRActivity;
 import com.deucat.kartik.trainbrain.R;
 
 import org.json.JSONArray;
@@ -14,6 +19,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -30,11 +37,12 @@ public class LiveTrain extends AppCompatActivity {
 
     TextView mPosition;
     TextView mTrainName;
+    EditText mEditText;
+    Button mButton;
 
     RecyclerView mRecyclerView;
 
 
-    String url = "http://api.railwayapi.com/live/train/12345/doj/20170312/apikey/o9je768f/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +51,29 @@ public class LiveTrain extends AppCompatActivity {
 
         mPosition = (TextView) findViewById(R.id.positionLive);
         mTrainName = (TextView) findViewById(R.id.trainNameLive);
+        mEditText = (EditText)findViewById(R.id.trainNumberLiveET);
+        mButton = (Button)findViewById(R.id.okButtonLive);
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerViewLive);
 
-        getDataOverTheInternet(url);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trainNumber = mEditText.getText().toString();
+
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+
+                String date = dateFormat.format(calendar.getTime());
+                Log.d(TAG, "onClick: "+date);
+                String url = "http://api.railwayapi.com/live/train/"+trainNumber+"/doj/"+date+"/apikey/o9je768f/";
+
+                getDataOverTheInternet(url);
+            }
+        });
+
+
+
     }
 
     private void getDataOverTheInternet(String url) {
@@ -89,9 +116,9 @@ public class LiveTrain extends AppCompatActivity {
     private LiveTrainClass parshLiveTrainClass(String JSONData) throws JSONException {
 
         JSONObject root = new JSONObject(JSONData);
-        mLiveTrainClass.setError(root.getString("error"));
         mLiveTrainClass.setPosition(root.getString("position"));
         mLiveTrainClass.setTrainNumber(root.getString("train_number"));
+        mLiveTrainClass.setResponceCode(root.getInt("response_code"));
 
         return mLiveTrainClass;
     }
@@ -134,6 +161,12 @@ public class LiveTrain extends AppCompatActivity {
     }
 
     private void updateUI(){
+
+        if(mLiveTrainClass.getResponceCode()!=200){
+            alerAboutEror();
+
+        }
+
         mTrainName.setText(mLiveTrainClass.getTrainNumber());
         mPosition.setText(mLiveTrainClass.getPosition());
 
@@ -143,5 +176,13 @@ public class LiveTrain extends AppCompatActivity {
         mRecyclerView.setAdapter(liveTrainAdapter);
         mRecyclerView.setLayoutManager(manager);
 
+
     }
+
+    void alerAboutEror() {
+        AlertDilog alertDilog = new AlertDilog();
+        alertDilog.show(getFragmentManager(),"Error");
+    }
+
+
 }

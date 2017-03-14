@@ -201,7 +201,7 @@ public class PNRActivity extends AppCompatActivity {
 
     }
 
-    private void alerAboutEror() {
+    void alerAboutEror() {
         AlertDilog alertDilog = new AlertDilog();
         alertDilog.show(getFragmentManager(),"Error");
     }

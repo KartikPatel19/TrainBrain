@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.deucat.kartik.trainbrain.MainActivity">
 
-    <ImageButton
-        android:id="@+id/trainRouteButton"
+    <Button
+        android:id="@+id/trainRouteActivity"
         android:onClick="openRouteIntent"
-        android:layout_width="333dp"
-        android:layout_height="173dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/train_route_final"
-        tools:layout_editor_absoluteX="-7dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="train route"
+        android:textSize="50sp"
+        android:textColor="#FFFFFF"
+        android:background="#4CAF50"
+        android:layout_marginBottom="2dp"/>
 
-    <ImageButton
-        android:id="@+id/imageButton2"
+    <Button
+        android:id="@+id/pnrActivityOpen"
         android:onClick="openPnrIntent"
-        android:layout_width="330dp"
-        android:layout_height="182dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/train_rout_fun_img"
-        tools:layout_editor_absoluteX="-6dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/trainRouteButton"/>
-
-    <ImageButton
-        android:id="@+id/imageButton3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="PNR"
+        android:textSize="50sp"
+        android:textColor="#FFFFFF"
+        android:background="#66BB6A"
+        android:layout_marginBottom="2dp"/>
+    <Button
+        android:id="@+id/liveTrainActivityOpen"
         android:onClick="openLiveTrain"
-        android:layout_width="329dp"
-        android:layout_height="165dp"
-        app:srcCompat="@drawable/route_train_bg_station"
-        tools:layout_editor_absoluteX="-5dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2"/>
-</android.support.constraint.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Live train"
+        android:textSize="50sp"
+        android:textColor="#FFFFFF"
+        android:background="#81C784"/>
+
+
+</LinearLayout>

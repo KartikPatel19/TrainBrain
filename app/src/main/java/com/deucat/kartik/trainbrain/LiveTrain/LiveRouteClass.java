@@ -1,6 +1,6 @@
 package com.deucat.kartik.trainbrain.LiveTrain;
 
-public class LiveRouteClass {
+class LiveRouteClass {
 
     private int mIndexNumber;
     private int mDistance;
@@ -17,101 +17,102 @@ public class LiveRouteClass {
     private boolean mHasArr;
     private boolean mHasDep;
 
-    public LiveRouteClass() {    }
+    LiveRouteClass() {
+    }
 
-    public int getIndexNumber() {
+    int getIndexNumber() {
         return mIndexNumber;
     }
 
-    public void setIndexNumber(int indexNumber) {
+    void setIndexNumber(int indexNumber) {
         mIndexNumber = indexNumber;
     }
 
-    public int getDistance() {
+    int getDistance() {
         return mDistance;
     }
 
-    public void setDistance(int distance) {
+    void setDistance(int distance) {
         mDistance = distance;
     }
 
-    public int getLateTime() {
+    int getLateTime() {
         return mLateTime;
     }
 
-    public void setLateTime(int lateTime) {
+    void setLateTime(int lateTime) {
         mLateTime = lateTime;
     }
 
-    public String getNamne() {
+    String getNamne() {
         return mNamne;
     }
 
-    public void setNamne(String namne) {
+    void setNamne(String namne) {
         mNamne = namne;
     }
 
-    public String getSchArr() {
+    String getSchArr() {
         return mSchArr;
     }
 
-    public void setSchArr(String schArr) {
+    void setSchArr(String schArr) {
         mSchArr = schArr;
     }
 
-    public String getSchDep() {
+    String getSchDep() {
         return mSchDep;
     }
 
-    public void setSchDep(String schDep) {
+    void setSchDep(String schDep) {
         mSchDep = schDep;
     }
 
-    public String getActArr() {
+    String getActArr() {
         return mActArr;
     }
 
-    public void setActArr(String actArr) {
+    void setActArr(String actArr) {
         mActArr = actArr;
     }
 
-    public String getActDep() {
+    String getActDep() {
         return mActDep;
     }
 
-    public void setActDep(String actDep) {
+    void setActDep(String actDep) {
         mActDep = actDep;
     }
 
-    public String getSchArrDate() {
+    String getSchArrDate() {
         return mSchArrDate;
     }
 
-    public void setSchArrDate(String schArrDate) {
+    void setSchArrDate(String schArrDate) {
         mSchArrDate = schArrDate;
     }
 
-    public String getSchDepDate() {
+    String getSchDepDate() {
         return mSchDepDate;
     }
 
-    public void setSchDepDate(String schDepDate) {
+    void setSchDepDate(String schDepDate) {
         mSchDepDate = schDepDate;
     }
 
-    public boolean isHasArr() {
+    boolean isHasArr() {
         return mHasArr;
     }
 
-    public void setHasArr(boolean hasArr) {
+    void setHasArr(boolean hasArr) {
         mHasArr = hasArr;
     }
 
-    public boolean isHasDep() {
+    boolean isHasDep() {
         return mHasDep;
     }
 
-    public void setHasDep(boolean hasDep) {
+    void setHasDep(boolean hasDep) {
         mHasDep = hasDep;
     }
 }

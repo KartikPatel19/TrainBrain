@@ -1,99 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#CFD8DC"
-                android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="#ECEFF1"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/indexTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:padding="5dp"
-        android:text="99"
-        android:textSize="40sp"/>
-
-    <TextView
-        android:id="@+id/distanceTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/indexTV"
-        android:padding="5dp"
-        android:text="99999"
-        android:textSize="15sp"/>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        android:layout_height="90dp"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/indexTV">
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:src="@drawable/blackvender"/>
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/scharr"
+            android:id="@+id/routeListIndexNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/imageView1"
-            android:layout_alignLeft="@id/imageView1"
-            android:layout_alignRight="@id/imageView1"
-            android:layout_alignTop="@id/imageView1"
-            android:gravity="center"
-            android:text="Start Point"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"/>
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/blackvender"/>
+            android:text="99"
+            android:textSize="20sp"
+            android:layout_marginLeft="16dp"/>
 
         <TextView
-            android:id="@+id/schdep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/imageView2"
-            android:layout_alignLeft="@id/imageView2"
-            android:layout_alignRight="@id/imageView2"
-            android:layout_alignTop="@id/imageView2"
+            android:text="Distance"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:layout_marginRight="5dp"/>
+        <TextView
+            android:id="@+id/routeListDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9999"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/routeListStateName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Gujrat"
+            android:lines="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/routeListStationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ankleshwar Jn"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/routeListSch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Start"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_send"/>
+
+        <TextView
+            android:id="@+id/routeListDep"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:text="End Point"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Destination"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/nameOfTheStation"
-        android:layout_marginLeft="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/relativeLayout"
-        android:text="Ankleshwar Super Fast Express"
-        android:textSize="15sp"/>
 
-    <TextView
-        android:id="@+id/stateLayoutTV"
-        android:layout_marginBottom="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_marginRight="5dp"
-        android:text="Gujrat"/>
-
-</RelativeLayout>
+</LinearLayout>

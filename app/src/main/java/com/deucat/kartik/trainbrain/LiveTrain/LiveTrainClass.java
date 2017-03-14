@@ -1,35 +1,37 @@
 package com.deucat.kartik.trainbrain.LiveTrain;
 
- class LiveTrainClass {
+class LiveTrainClass {
 
-    private String mError;
+
     private String mPosition;
     private String mTrainNumber;
+    private int mResponceCode;
 
-     LiveTrainClass() {    }
-
-    public String getError() {
-        return mError;
+    LiveTrainClass() {
     }
 
-     void setError(String error) {
-        mError = error;
-    }
 
-    public String getPosition() {
+    String getPosition() {
         return mPosition;
     }
 
-     void setPosition(String position) {
+    void setPosition(String position) {
         mPosition = position;
     }
 
-    public String getTrainNumber() {
+    String getTrainNumber() {
         return mTrainNumber;
     }
 
-     void setTrainNumber(String trainNumber) {
+    void setTrainNumber(String trainNumber) {
         mTrainNumber = trainNumber;
     }
 
- }
+    int getResponceCode() {
+        return mResponceCode;
+    }
+
+     void setResponceCode(int responceCode) {
+        mResponceCode = responceCode;
+    }
+}

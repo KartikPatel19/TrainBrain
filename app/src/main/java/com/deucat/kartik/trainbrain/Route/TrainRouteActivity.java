@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.deucat.kartik.trainbrain.AlertDilog;
 import com.deucat.kartik.trainbrain.R;
 
 import org.json.JSONArray;
@@ -48,18 +49,11 @@ public class TrainRouteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.train_route_activity);
 
-        mTrainNameTv = (TextView) findViewById(R.id.nameOfTheTrainTV);
-        mRecyclerView = (RecyclerView) findViewById(R.id.trainRouteRecyclerView);
-        mEditText = (EditText) findViewById(R.id.trainNumberET);
-        mButton = (Button) findViewById(R.id.okButton);
+        mTrainNameTv = (TextView) findViewById(R.id.routeTrainName);
+        mRecyclerView = (RecyclerView) findViewById(R.id.routeRecyclerView);
+        mEditText = (EditText) findViewById(R.id.routeTrainNumber);
+        mButton = (Button) findViewById(R.id.routeOkButton);
 
-
-
-        try {
-            getJsonDataOverTheInternet(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +64,7 @@ public class TrainRouteActivity extends AppCompatActivity {
 
                 Log.d(TAG, "onClick: "+url);
                 if(trainNumber.length()>5 || trainNumber.length()<5){
+                    alerAboutEror();
                     Toast.makeText(TrainRouteActivity.this, "PLease Enter correct number of train", Toast.LENGTH_SHORT).show();
                 }
 
@@ -199,5 +194,10 @@ public class TrainRouteActivity extends AppCompatActivity {
         Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.prokerala.com/travel/indian-railway/trains/"));
         startActivity(myIntent);
 
+    }
+
+    void alerAboutEror() {
+        AlertDilog alertDilog = new AlertDilog();
+        alertDilog.show(getFragmentManager(),"Error");
     }
 }

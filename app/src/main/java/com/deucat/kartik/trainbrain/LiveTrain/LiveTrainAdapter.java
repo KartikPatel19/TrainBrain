@@ -85,7 +85,7 @@ class LiveTrainAdapter extends RecyclerView.Adapter<LiveTrainAdapter.LiveTrainHo
             if (!liveRouteClass.isHasArr()) {
                 mHasArr.setVisibility(View.INVISIBLE);
             }
-            if (!liveRouteClass.isHasArr()) {
+            if (!liveRouteClass.isHasDep()) {
                 mHasDep.setVisibility(View.INVISIBLE);
             }
 
