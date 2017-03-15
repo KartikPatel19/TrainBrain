@@ -1,5 +1,6 @@
 package com.deucat.kartik.trainbrain.LiveTrain;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,12 +50,11 @@ public class LiveTrain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_train);
 
-        mPosition = (TextView) findViewById(R.id.positionLive);
-        mTrainName = (TextView) findViewById(R.id.trainNameLive);
-        mEditText = (EditText)findViewById(R.id.trainNumberLiveET);
-        mButton = (Button)findViewById(R.id.okButtonLive);
+        mPosition = (TextView) findViewById(R.id.livePosition);
+        mEditText = (EditText)findViewById(R.id.liveEditText);
+        mButton = (Button)findViewById(R.id.liveOkButton);
 
-        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerViewLive);
+        mRecyclerView = (RecyclerView)findViewById(R.id.liveRecyclerView);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +117,6 @@ public class LiveTrain extends AppCompatActivity {
 
         JSONObject root = new JSONObject(JSONData);
         mLiveTrainClass.setPosition(root.getString("position"));
-        mLiveTrainClass.setTrainNumber(root.getString("train_number"));
         mLiveTrainClass.setResponceCode(root.getInt("response_code"));
 
         return mLiveTrainClass;
@@ -167,7 +166,6 @@ public class LiveTrain extends AppCompatActivity {
 
         }
 
-        mTrainName.setText(mLiveTrainClass.getTrainNumber());
         mPosition.setText(mLiveTrainClass.getPosition());
 
         LiveTrainAdapter liveTrainAdapter = new LiveTrainAdapter(mLiveRouteClass);
@@ -185,4 +183,7 @@ public class LiveTrain extends AppCompatActivity {
     }
 
 
+    public void goBack(View view) {
+        stopLockTask();
+    }
 }

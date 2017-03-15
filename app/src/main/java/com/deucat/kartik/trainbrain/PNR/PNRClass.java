@@ -11,17 +11,17 @@ class PNRClass {
     private String mBoardingPointName;
     private String mToStationName;
     private String mReservationName;
-    private boolean mError;
+    private int mResponceCode;
 
     PNRClass() {
     }
 
-    boolean isError() {
-        return mError;
+     int getResponceCode() {
+        return mResponceCode;
     }
 
-    void setError(boolean error) {
-        mError = error;
+     void setResponceCode(int responceCode) {
+        mResponceCode = responceCode;
     }
 
     String getTrainName() {

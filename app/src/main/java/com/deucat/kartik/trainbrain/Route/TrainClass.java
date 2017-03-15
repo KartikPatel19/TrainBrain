@@ -1,24 +1,34 @@
 package com.deucat.kartik.trainbrain.Route;
 
- class TrainClass {
+class TrainClass {
 
     private String mNameOfTrain = "";
+    private int mResponceCode;
 //    private String[] mClassName;
 //    private String[] mDayName;
 
 
-     TrainClass() {    }
+    TrainClass() {
+    }
 
 
-     String getNameOfTrain() {
+    String getNameOfTrain() {
         return mNameOfTrain;
     }
 
-     void setNameOfTrain(String nameOfTrain) {
+    void setNameOfTrain(String nameOfTrain) {
         mNameOfTrain = nameOfTrain;
     }
 
-//    public String[] getClassName() {
+    int getResponceCode() {
+        return mResponceCode;
+    }
+
+    void setResponceCode(int responceCode) {
+        mResponceCode = responceCode;
+    }
+
+    //    public String[] getClassName() {
 //        return mClassName;
 //    }
 //

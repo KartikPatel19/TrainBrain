@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:layout_margin="2dp"
               android:background="#EEEEEE"
               android:orientation="horizontal"
               android:padding="5dp">
@@ -15,31 +16,31 @@
         android:textSize="31sp"/>
 
     <TextView
-        android:layout_marginLeft="30dp"
         android:id="@+id/bookingStatusPNRTVL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
         android:padding="5dp"
         android:text="S2,L2,H2"
         android:textSize="20sp"/>
 
     <TextView
-        android:layout_marginLeft="30dp"
         android:id="@+id/curruntCochePNRTVL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
         android:padding="5dp"
         android:text="S2,L2,H2"
         android:textSize="20sp"/>
 
     <TextView
-        android:layout_marginLeft="30dp"
         android:id="@+id/cochePositionPNRTVL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
         android:padding="5dp"
         android:text="99"
         android:textSize="20sp"/>

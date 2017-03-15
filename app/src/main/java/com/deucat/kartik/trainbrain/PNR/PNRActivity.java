@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.deucat.kartik.trainbrain.AlertDilog;
 import com.deucat.kartik.trainbrain.R;
@@ -131,12 +130,12 @@ public class PNRActivity extends AppCompatActivity {
 
         JSONObject root = new JSONObject(JSONData);
 
+        mPNRClass.setResponceCode(root.getInt("response_code"));
         mPNRClass.setTrainName(root.getString("train_name"));
         mPNRClass.setTrainNumber(root.getString("train_num"));
         mPNRClass.setDOJ(root.getString("doj"));
         mPNRClass.setClassName(root.getString("class"));
         mPNRClass.setTotalPassanger(root.getInt("total_passengers"));
-        mPNRClass.setError(root.getBoolean("error"));
 
         JSONObject fromStation = root.getJSONObject("from_station");
         mPNRClass.setFromStationName(fromStation.getString("name"));
@@ -195,7 +194,7 @@ public class PNRActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        if (mPNRClass.isError()){
+        if (mPNRClass.getResponceCode()!=200){
             alerAboutEror();
         }
 

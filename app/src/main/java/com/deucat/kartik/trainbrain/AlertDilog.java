@@ -20,7 +20,4 @@ public class AlertDilog extends DialogFragment {
         return alertDiloge.create();
     }
 
-    public void show(FragmentManager supportFragmentManager, String error) {
-
-    }
 }

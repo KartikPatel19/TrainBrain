@@ -4,11 +4,9 @@ class LiveTrainClass {
 
 
     private String mPosition;
-    private String mTrainNumber;
     private int mResponceCode;
 
-    LiveTrainClass() {
-    }
+    LiveTrainClass() {    }
 
 
     String getPosition() {
@@ -19,14 +17,6 @@ class LiveTrainClass {
         mPosition = position;
     }
 
-    String getTrainNumber() {
-        return mTrainNumber;
-    }
-
-    void setTrainNumber(String trainNumber) {
-        mTrainNumber = trainNumber;
-    }
-
     int getResponceCode() {
         return mResponceCode;
     }
@@ -34,4 +24,5 @@ class LiveTrainClass {
      void setResponceCode(int responceCode) {
         mResponceCode = responceCode;
     }
+
 }

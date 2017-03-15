@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="2dp"
     android:background="#ECEFF1"
     android:orientation="vertical">
 
@@ -16,31 +16,33 @@
             android:id="@+id/routeListIndexNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
             android:text="99"
-            android:textSize="20sp"
-            android:layout_marginLeft="16dp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Distance"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:gravity="end"
-            android:layout_marginRight="5dp"/>
+            android:text="Distance"/>
+
         <TextView
             android:id="@+id/routeListDistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9999"
             android:layout_marginLeft="8dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="9999"/>
+
         <TextView
             android:id="@+id/routeListStateName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Gujrat"
-            android:lines="1"/>
+            android:lines="1"
+            android:text="Gujrat"/>
 
     </LinearLayout>
 
@@ -53,19 +55,19 @@
             android:id="@+id/routeListStationName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ankleshwar Jn"
-            android:layout_weight="1"
             android:layout_gravity="center"
-            android:gravity="center"/>
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Ankleshwar Jn"/>
 
         <TextView
             android:id="@+id/routeListSch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Start"
             android:layout_gravity="center"
-            android:gravity="center"/>
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Start"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -74,11 +76,11 @@
 
         <TextView
             android:id="@+id/routeListDep"
-            android:layout_gravity="center"
-            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="Destination"/>
 
     </LinearLayout>

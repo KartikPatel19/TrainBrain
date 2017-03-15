@@ -18,10 +18,10 @@
 
         <ImageView
             android:id="@+id/routeGoBack"
+            android:onClick="goBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-
             android:padding="2dp"
             app:srcCompat="@android:drawable/ic_menu_revert"/>
 
@@ -78,7 +78,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/routeRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 
     <com.google.android.gms.ads.AdView
         android:layout_width="match_parent"

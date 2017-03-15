@@ -62,11 +62,7 @@ public class TrainRouteActivity extends AppCompatActivity {
                 trainNumber = mEditText.getText().toString();
                 url = "http://api.railwayapi.com/route/train/" + trainNumber + "/apikey/o9je768f/";
 
-                Log.d(TAG, "onClick: "+url);
-                if(trainNumber.length()>5 || trainNumber.length()<5){
-                    alerAboutEror();
-                    Toast.makeText(TrainRouteActivity.this, "PLease Enter correct number of train", Toast.LENGTH_SHORT).show();
-                }
+                Log.d(TAG, "onClick: " + url);
 
                 try {
                     getJsonDataOverTheInternet(url);
@@ -124,6 +120,12 @@ public class TrainRouteActivity extends AppCompatActivity {
 
     private void updateUI() {
         mTrainNameTv.setText(trainClass.getNameOfTrain());
+
+        if (trainClass.getResponceCode() != 200) {
+            alerAboutEror();
+            Toast.makeText(TrainRouteActivity.this, "PLease Enter correct number of train", Toast.LENGTH_SHORT).show();
+        }
+
         RouteClassAdapter mAdapter = new RouteClassAdapter(mRouteClasses);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
 
@@ -137,6 +139,7 @@ public class TrainRouteActivity extends AppCompatActivity {
         JSONObject mainData = new JSONObject(JsonData);
         JSONObject data = mainData.getJSONObject("train");
         trainClass.setNameOfTrain(data.getString("name"));
+        trainClass.setResponceCode(mainData.getInt("response_code"));
 
 //        JSONArray classesOfTrain = data.getJSONArray("classes");
 //        String[] classAva = new String[classesOfTrain.length()];
@@ -198,6 +201,6 @@ public class TrainRouteActivity extends AppCompatActivity {
 
     void alerAboutEror() {
         AlertDilog alertDilog = new AlertDilog();
-        alertDilog.show(getFragmentManager(),"Error");
+        alertDilog.show(getFragmentManager(), "Error");
     }
 }

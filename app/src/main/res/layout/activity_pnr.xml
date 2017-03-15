@@ -4,37 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.deucat.kartik.trainbrain.PNR.PNRActivity">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/trainNameLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#EEEEEE"
+        android:layout_height="100dp"
+        android:background="#4CAF50"
+        android:elevation="8dp"
         android:orientation="horizontal"
         android:padding="5dp">
 
+        <ImageView
+            android:onClick="goBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            app:srcCompat="@android:drawable/ic_menu_revert"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_directions_transit"/>
+
         <TextView
             android:id="@+id/trainName"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center"
             android:text="Please Enter Your PNR Number"
-            android:textSize="22sp"/>
-    </LinearLayout>
+            android:textColor="#FFFFFF"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="72dp"
+            android:textSize="20sp"/>
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/mainTrainDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#EEEE"
         android:orientation="vertical"
-        android:padding="5dp">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#81C784"
+            android:elevation="4dp"
             android:padding="1dp">
 
             <TextView
@@ -43,6 +64,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="PNR Number"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp"/>
 
             <EditText
@@ -52,11 +74,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="number"/>
+
             <Button
                 android:id="@+id/pnrOKButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ok"/>
+                android:background="#40FFFFFF"
+                android:text="ok"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -82,6 +108,7 @@
                 android:textSize="18sp"/>
 
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -98,7 +125,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/common_google_signin_btn_icon_dark"/>
+                android:src="@drawable/ic_directions_transit"
+                app:srcCompat="@mipmap/ic_launcher"/>
 
             <TextView
                 android:id="@+id/classOfPNRTV"
@@ -114,7 +142,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/common_google_signin_btn_icon_dark"/>
+                android:src="@drawable/ic_directions_transit"
+                app:srcCompat="@mipmap/ic_launcher"/>
 
             <TextView
                 android:id="@+id/passangerPNRTV"
@@ -154,8 +183,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="#EEEEEE"
+        android:orientation="vertical"
         android:padding="5dp">
 
         <LinearLayout
@@ -255,15 +284,16 @@
 
     </LinearLayout>
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/pnrRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:elevation="-2dp"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
 
 </LinearLayout>

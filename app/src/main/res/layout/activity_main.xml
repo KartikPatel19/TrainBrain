@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.deucat.kartik.trainbrain.MainActivity">
+    tools:context="com.deucat.kartik.trainbrain.MainActivity"
+    android:background="@drawable/aaa">
 
     <Button
         android:id="@+id/trainRouteActivity"
@@ -16,7 +18,7 @@
         android:text="train route"
         android:textSize="50sp"
         android:textColor="#FFFFFF"
-        android:background="#4CAF50"
+        android:background="#40FFFFFF"
         android:layout_marginBottom="2dp"/>
 
     <Button
@@ -28,7 +30,7 @@
         android:text="PNR"
         android:textSize="50sp"
         android:textColor="#FFFFFF"
-        android:background="#66BB6A"
+        android:background="#40FFFFFF"
         android:layout_marginBottom="2dp"/>
     <Button
         android:id="@+id/liveTrainActivityOpen"
@@ -39,7 +41,13 @@
         android:text="Live train"
         android:textSize="50sp"
         android:textColor="#FFFFFF"
-        android:background="#81C784"/>
+        android:background="#40FFFFFF"/>
+
+    <com.google.android.gms.ads.AdView
+        android:layout_gravity="center"
+        ads:adSize="BANNER"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>
