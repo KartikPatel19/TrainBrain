@@ -10,7 +10,6 @@
     android:background="@drawable/aaa">
 
     <Button
-        android:id="@+id/trainRouteActivity"
         android:onClick="openRouteIntent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +21,6 @@
         android:layout_marginBottom="2dp"/>
 
     <Button
-        android:id="@+id/pnrActivityOpen"
         android:onClick="openPnrIntent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,7 +31,6 @@
         android:background="#40FFFFFF"
         android:layout_marginBottom="2dp"/>
     <Button
-        android:id="@+id/liveTrainActivityOpen"
         android:onClick="openLiveTrain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,6 +41,8 @@
         android:background="#40FFFFFF"/>
 
     <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewMain"
+        ads:adUnitId="@string/banner_id"
         android:layout_gravity="center"
         ads:adSize="BANNER"
         android:layout_width="wrap_content"

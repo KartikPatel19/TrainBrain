@@ -9,13 +9,8 @@ class LiveRouteClass {
     private String mNamne;
     private String mSchArr;
     private String mSchDep;
-    private String mActArr;
-    private String mActDep;
     private String mSchArrDate;
     private String mSchDepDate;
-
-    private boolean mHasArr;
-    private boolean mHasDep;
 
     LiveRouteClass() {
     }
@@ -68,22 +63,6 @@ class LiveRouteClass {
         mSchDep = schDep;
     }
 
-    String getActArr() {
-        return mActArr;
-    }
-
-    void setActArr(String actArr) {
-        mActArr = actArr;
-    }
-
-    String getActDep() {
-        return mActDep;
-    }
-
-    void setActDep(String actDep) {
-        mActDep = actDep;
-    }
-
     String getSchArrDate() {
         return mSchArrDate;
     }
@@ -100,19 +79,4 @@ class LiveRouteClass {
         mSchDepDate = schDepDate;
     }
 
-    boolean isHasArr() {
-        return mHasArr;
-    }
-
-    void setHasArr(boolean hasArr) {
-        mHasArr = hasArr;
-    }
-
-    boolean isHasDep() {
-        return mHasDep;
-    }
-
-    void setHasDep(boolean hasDep) {
-        mHasDep = hasDep;
-    }
 }

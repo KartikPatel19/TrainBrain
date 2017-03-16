@@ -1,19 +1,20 @@
 package com.deucat.kartik.trainbrain.LiveTrain;
 
-import android.content.Intent;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.deucat.kartik.trainbrain.AlertDilog;
-import com.deucat.kartik.trainbrain.PNR.PNRActivity;
+
 import com.deucat.kartik.trainbrain.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,12 +38,11 @@ public class LiveTrain extends AppCompatActivity {
     LiveRouteClass[] mLiveRouteClass;
 
     TextView mPosition;
-    TextView mTrainName;
     EditText mEditText;
     Button mButton;
 
     RecyclerView mRecyclerView;
-
+    AdView mAdView;
 
 
     @Override
@@ -56,6 +56,10 @@ public class LiveTrain extends AppCompatActivity {
 
         mRecyclerView = (RecyclerView)findViewById(R.id.liveRecyclerView);
 
+        mAdView = (AdView) findViewById(R.id.liveAdView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +69,7 @@ public class LiveTrain extends AppCompatActivity {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
                 String date = dateFormat.format(calendar.getTime());
-                Log.d(TAG, "onClick: "+date);
+
                 String url = "http://api.railwayapi.com/live/train/"+trainNumber+"/doj/"+date+"/apikey/o9je768f/";
 
                 getDataOverTheInternet(url);
@@ -84,14 +88,12 @@ public class LiveTrain extends AppCompatActivity {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "onFailure: Chut gay ", e);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
 
                 String JSONData = response.body().string();
-                Log.d(TAG, "onResponse: "+ JSONData);
 
                 try {
                     parshLiveTrainClass(JSONData);
@@ -144,13 +146,8 @@ public class LiveTrain extends AppCompatActivity {
 
             routeClass.setSchArr(routeList.getString("scharr"));
             routeClass.setSchDep(routeList.getString("schdep"));
-            routeClass.setActArr(routeList.getString("actarr"));
-            routeClass.setActDep(routeList.getString("actdep"));
             routeClass.setSchArrDate(routeList.getString("scharr_date"));
             routeClass.setSchDepDate(routeList.getString("actarr_date"));
-
-            routeClass.setHasArr(routeList.getBoolean("has_arrived"));
-            routeClass.setHasDep(routeList.getBoolean("has_departed"));
 
             liveRouteClasses[i] = routeClass;
 

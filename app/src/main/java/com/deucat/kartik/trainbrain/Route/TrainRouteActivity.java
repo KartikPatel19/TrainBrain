@@ -1,13 +1,10 @@
 package com.deucat.kartik.trainbrain.Route;
 
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +13,8 @@ import android.widget.Toast;
 
 import com.deucat.kartik.trainbrain.AlertDilog;
 import com.deucat.kartik.trainbrain.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +29,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class TrainRouteActivity extends AppCompatActivity {
-    private static final String TAG = "TrainRouteActivity";
     TrainClass trainClass = new TrainClass();
     RouteClass[] mRouteClasses;
 
@@ -43,6 +41,7 @@ public class TrainRouteActivity extends AppCompatActivity {
     TextView mTrainNameTv;
     RecyclerView mRecyclerView;
 
+    AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +53,10 @@ public class TrainRouteActivity extends AppCompatActivity {
         mEditText = (EditText) findViewById(R.id.routeTrainNumber);
         mButton = (Button) findViewById(R.id.routeOkButton);
 
+        mAdView = (AdView) findViewById(R.id.routeAdView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +64,6 @@ public class TrainRouteActivity extends AppCompatActivity {
 
                 trainNumber = mEditText.getText().toString();
                 url = "http://api.railwayapi.com/route/train/" + trainNumber + "/apikey/o9je768f/";
-
-                Log.d(TAG, "onClick: " + url);
 
                 try {
                     getJsonDataOverTheInternet(url);
@@ -83,16 +84,13 @@ public class TrainRouteActivity extends AppCompatActivity {
         Call call = okHttpClient.newCall(request);
         call.enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e("TeriChut", "onFailure: ", e);
-            }
+            public void onFailure(Call call, IOException e) {            }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
 
                 try {
                     String JSONData = response.body().string();
-                    Log.d(TAG, "onResponse: " + JSONData);
                     if (response.isSuccessful()) {
 
                         mRouteClasses = parshRouteClass(JSONData);
@@ -107,7 +105,7 @@ public class TrainRouteActivity extends AppCompatActivity {
 
 
                     } else {
-                        Log.d(TAG, "onResponse: Chut gay samjo :(");
+                        alerAboutEror();
                     }
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
@@ -190,13 +188,6 @@ public class TrainRouteActivity extends AppCompatActivity {
         }
 
         return routeClasses;
-    }
-
-    public void openHttp(View view) {
-
-        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.prokerala.com/travel/indian-railway/trains/"));
-        startActivity(myIntent);
-
     }
 
     void alerAboutEror() {

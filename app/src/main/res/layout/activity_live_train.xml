@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -56,10 +57,11 @@
             android:id="@+id/liveEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:hint="Train Number"
+            android:inputType="number"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:layout_weight="1"/>
+            android:textColorHint="#FFFFFF"/>
 
         <Button
             android:id="@+id/liveOkButton"
@@ -71,13 +73,16 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/liveRecyclerView"
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/liveAdView"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/liveRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

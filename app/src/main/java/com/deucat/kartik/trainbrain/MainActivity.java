@@ -8,13 +8,22 @@ import android.view.View;
 import com.deucat.kartik.trainbrain.LiveTrain.LiveTrain;
 import com.deucat.kartik.trainbrain.PNR.PNRActivity;
 import com.deucat.kartik.trainbrain.Route.TrainRouteActivity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity {
+
+    AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAdView = (AdView)findViewById(R.id.adViewMain);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
     }
 
     public void openRouteIntent(View view) {

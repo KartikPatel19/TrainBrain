@@ -1,7 +1,6 @@
 package com.deucat.kartik.trainbrain.Route;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,8 +61,6 @@ class RouteClassAdapter extends RecyclerView.Adapter<RouteClassAdapter.RouteView
             mSchDep.setText(routeClass.getSchDep());
             mNameOfStation.setText(routeClass.getStationName());
             mNameOfState.setText(routeClass.getState());
-
-            Log.d(TAG, "bindRoute: " + routeClass.getStationName());
 
         }
 

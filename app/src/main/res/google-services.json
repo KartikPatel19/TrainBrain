@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "554074466632",
+    "firebase_url": "https://trainbrain-bcaf1.firebaseio.com",
+    "project_id": "trainbrain-bcaf1",
+    "storage_bucket": "trainbrain-bcaf1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554074466632:android:2885d218521a6bbf",
+        "android_client_info": {
+          "package_name": "com.deucat.kartik.trainbrain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "554074466632-uc4eov4qahkpscced293iann0idvd7sn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deucat.kartik.trainbrain",
+            "certificate_hash": "d0d0be2dc6fdebf09dd5ca3db751684eaf4eae18"
+          }
+        },
+        {
+          "client_id": "554074466632-dmjb4oaq7v4lsp2cn9tqrki576f1gl6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9uffwi1S7cIgqprKQ8WWBHJZUXOjLhTU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "554074466632-dmjb4oaq7v4lsp2cn9tqrki576f1gl6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

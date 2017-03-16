@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +11,8 @@ import android.widget.TextView;
 
 import com.deucat.kartik.trainbrain.AlertDilog;
 import com.deucat.kartik.trainbrain.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +28,6 @@ import okhttp3.Response;
 
 public class PNRActivity extends AppCompatActivity {
 
-    private static final String TAG = "PNRActivity";
 
     String pnrNumber = "";
     String url = "http://api.railwayapi.com/pnr_status/pnr/" + pnrNumber + "/apikey/o9je768f/";
@@ -50,6 +50,7 @@ public class PNRActivity extends AppCompatActivity {
     Button mButton;
 
     RecyclerView mRecyclerView;
+    AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,11 @@ public class PNRActivity extends AppCompatActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.pnrRecyclerView);
 
+        mAdView = (AdView) findViewById(R.id.pnrAdView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +99,6 @@ public class PNRActivity extends AppCompatActivity {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "onFailure: ", e);
             }
 
             @Override
@@ -101,9 +106,7 @@ public class PNRActivity extends AppCompatActivity {
 
                 try {
                     String JSONData = response.body().string();
-                    Log.d(TAG, "onResponse: " + JSONData);
                     if (response.isSuccessful()) {
-                        Log.d(TAG, "onResponse: Succeed");
 
                         parshPNRClass(JSONData);
                         mPassengerClasses = parshPassangerClass(JSONData);
@@ -115,10 +118,7 @@ public class PNRActivity extends AppCompatActivity {
                             }
                         });
 
-                    } else {
-                        Log.d(TAG, "onResponse: Chut gay samjo");
                     }
-
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
@@ -205,4 +205,6 @@ public class PNRActivity extends AppCompatActivity {
         alertDilog.show(getFragmentManager(),"Error");
     }
 
+    public void goBack(View view) {
+    }
 }

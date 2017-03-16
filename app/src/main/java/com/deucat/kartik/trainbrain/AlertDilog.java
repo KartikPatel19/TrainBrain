@@ -3,9 +3,7 @@ package com.deucat.kartik.trainbrain;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 
 public class AlertDilog extends DialogFragment {
 

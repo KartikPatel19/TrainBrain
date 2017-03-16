@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.deucat.kartik.trainbrain.Route.TrainRouteActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.deucat.kartik.trainbrain.Route.TrainRouteActivity">
 
 
     <RelativeLayout
@@ -17,11 +18,10 @@
         android:longClickable="true">
 
         <ImageView
-            android:id="@+id/routeGoBack"
-            android:onClick="goBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
+            android:onClick="goBack"
             android:padding="2dp"
             app:srcCompat="@android:drawable/ic_menu_revert"/>
 
@@ -51,17 +51,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="#81C784"
-        android:elevation="2dp">
+        android:elevation="2dp"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/routeTrainNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Train Number"
             android:layout_weight="1"
+            android:hint="Train Number"
+            android:inputType="number"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"/>
 
@@ -69,20 +69,23 @@
             android:id="@+id/routeOkButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OK"
-            android:background="#45FFFFFF"/>
+            android:background="#45FFFFFF"
+            android:text="OK"/>
 
 
     </LinearLayout>
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/routeAdView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_id"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/routeRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
-    <com.google.android.gms.ads.AdView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
 
 </LinearLayout>
