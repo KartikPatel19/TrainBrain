@@ -1,43 +1,35 @@
 package com.deucat.kartik.trainbrain;
 
+import android.app.TabActivity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.deucat.kartik.trainbrain.LiveTrain.LiveTrain;
 import com.deucat.kartik.trainbrain.PNR.PNRActivity;
 import com.deucat.kartik.trainbrain.Route.TrainRouteActivity;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
-public class MainActivity extends AppCompatActivity {
-
-    AdView mAdView;
+public class MainActivity extends TabActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        mAdView = (AdView)findViewById(R.id.adViewMain);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        TabHost mTabHost = getTabHost();
 
-    }
+        mTabHost.addTab(mTabHost.newTabSpec("live").setIndicator("Live Train").setContent(new Intent(this, LiveTrain.class)));
+        mTabHost.addTab(mTabHost.newTabSpec("pnr").setIndicator("PNR").setContent(new Intent(this, PNRActivity.class)));
+        mTabHost.addTab(mTabHost.newTabSpec("route").setIndicator("Route").setContent(new Intent(this, TrainRouteActivity.class)));
+        mTabHost.setBackgroundColor(Color.parseColor("#388E3C"));
 
-    public void openRouteIntent(View view) {
-        Intent intent = new Intent(this, TrainRouteActivity.class);
-        startActivity(intent);
-    }
-
-    public void openPnrIntent(View view) {
-        Intent intent = new Intent(this, PNRActivity.class);
-        startActivity(intent);
-    }
-
-    public void openLiveTrain(View view) {
-        Intent intent = new Intent(this, LiveTrain.class);
-        startActivity(intent);
+        for(int i=0;i<mTabHost.getTabWidget().getChildCount();i++)
+        {
+            TextView tv = (TextView) mTabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+            tv.setTextColor(Color.parseColor("#ffffff"));
+        }
+        mTabHost.setCurrentTab(0);
     }
 }

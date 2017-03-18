@@ -1,9 +1,11 @@
 package com.deucat.kartik.trainbrain.Route;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.deucat.kartik.trainbrain.R;
@@ -52,6 +54,7 @@ class RouteClassAdapter extends RecyclerView.Adapter<RouteClassAdapter.RouteView
             mSchDep = (TextView) itemView.findViewById(R.id.routeListDep);
             mNameOfStation = (TextView) itemView.findViewById(R.id.routeListStationName);
             mNameOfState = (TextView) itemView.findViewById(R.id.routeListStateName);
+
         }
 
          void bindRoute(RouteClass routeClass) {
@@ -61,6 +64,7 @@ class RouteClassAdapter extends RecyclerView.Adapter<RouteClassAdapter.RouteView
             mSchDep.setText(routeClass.getSchDep());
             mNameOfStation.setText(routeClass.getStationName());
             mNameOfState.setText(routeClass.getState());
+
 
         }
 

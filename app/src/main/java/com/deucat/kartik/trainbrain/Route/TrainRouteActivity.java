@@ -32,8 +32,7 @@ public class TrainRouteActivity extends AppCompatActivity {
     TrainClass trainClass = new TrainClass();
     RouteClass[] mRouteClasses;
 
-    String trainNumber = "";
-    String url = "http://api.railwayapi.com/route/train/" + trainNumber + "/apikey/o9je768f/";
+    String url = "http://api.railwayapi.com/route/train//apikey/o9je768f/";
 
 
     EditText mEditText;
@@ -62,7 +61,7 @@ public class TrainRouteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                trainNumber = mEditText.getText().toString();
+                String trainNumber = mEditText.getText().toString();
                 url = "http://api.railwayapi.com/route/train/" + trainNumber + "/apikey/o9je768f/";
 
                 try {

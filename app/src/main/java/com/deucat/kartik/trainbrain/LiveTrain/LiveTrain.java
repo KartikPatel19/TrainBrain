@@ -32,7 +32,6 @@ import okhttp3.Response;
 
 public class LiveTrain extends AppCompatActivity {
 
-    private static final String TAG = "LiveTrain";
 
     LiveTrainClass mLiveTrainClass = new LiveTrainClass();
     LiveRouteClass[] mLiveRouteClass;
@@ -51,10 +50,10 @@ public class LiveTrain extends AppCompatActivity {
         setContentView(R.layout.activity_live_train);
 
         mPosition = (TextView) findViewById(R.id.livePosition);
-        mEditText = (EditText)findViewById(R.id.liveEditText);
-        mButton = (Button)findViewById(R.id.liveOkButton);
+        mEditText = (EditText) findViewById(R.id.liveEditText);
+        mButton = (Button) findViewById(R.id.liveOkButton);
 
-        mRecyclerView = (RecyclerView)findViewById(R.id.liveRecyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.liveRecyclerView);
 
         mAdView = (AdView) findViewById(R.id.liveAdView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -70,13 +69,11 @@ public class LiveTrain extends AppCompatActivity {
 
                 String date = dateFormat.format(calendar.getTime());
 
-                String url = "http://api.railwayapi.com/live/train/"+trainNumber+"/doj/"+date+"/apikey/o9je768f/";
+                String url = "http://api.railwayapi.com/live/train/" + trainNumber + "/doj/" + date + "/apikey/o9je768f/";
 
                 getDataOverTheInternet(url);
             }
         });
-
-
 
     }
 
@@ -97,7 +94,8 @@ public class LiveTrain extends AppCompatActivity {
 
                 try {
                     parshLiveTrainClass(JSONData);
-                    mLiveRouteClass =  parshLiveRouteClass(JSONData);
+
+                    mLiveRouteClass = parshLiveRouteClass(JSONData);
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -120,6 +118,9 @@ public class LiveTrain extends AppCompatActivity {
         JSONObject root = new JSONObject(JSONData);
         mLiveTrainClass.setPosition(root.getString("position"));
         mLiveTrainClass.setResponceCode(root.getInt("response_code"));
+
+        JSONObject current = root.getJSONObject("current_station");
+        mLiveTrainClass.setCurrentIndexNumber(current.getInt("no"));
 
         return mLiveTrainClass;
     }
@@ -149,6 +150,9 @@ public class LiveTrain extends AppCompatActivity {
             routeClass.setSchArrDate(routeList.getString("scharr_date"));
             routeClass.setSchDepDate(routeList.getString("actarr_date"));
 
+            routeClass.setHasArr(routeList.getBoolean("has_arrived"));
+            routeClass.setHasDep(routeList.getBoolean("has_departed"));
+
             liveRouteClasses[i] = routeClass;
 
         }
@@ -156,9 +160,9 @@ public class LiveTrain extends AppCompatActivity {
         return liveRouteClasses;
     }
 
-    private void updateUI(){
+    private void updateUI() {
 
-        if(mLiveTrainClass.getResponceCode()!=200){
+        if (mLiveTrainClass.getResponceCode() != 200) {
             alerAboutEror();
 
         }
@@ -176,11 +180,7 @@ public class LiveTrain extends AppCompatActivity {
 
     void alerAboutEror() {
         AlertDilog alertDilog = new AlertDilog();
-        alertDilog.show(getFragmentManager(),"Error");
-    }
-
-
-    public void goBack(View view) {
-        stopLockTask();
+        alertDilog.show(getFragmentManager(), "Error");
     }
 }
+

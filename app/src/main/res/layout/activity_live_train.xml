@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/liveID"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.deucat.kartik.trainbrain.LiveTrain.LiveTrain"
     tools:layout_editor_absoluteX="0dp"
@@ -13,16 +14,10 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:background="#4CAF50"
-        android:elevation="8dp">
+        android:elevation="4dp">
 
-        <ImageView
-            android:onClick="goBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            app:srcCompat="@android:drawable/ic_menu_revert"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -51,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#81C784"
-        android:elevation="4dp">
+        android:elevation="2dp">
 
         <EditText
             android:id="@+id/liveEditText"

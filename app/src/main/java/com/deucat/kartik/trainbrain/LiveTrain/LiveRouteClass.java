@@ -12,8 +12,13 @@ class LiveRouteClass {
     private String mSchArrDate;
     private String mSchDepDate;
 
+    private boolean mHasArr = true;
+    private boolean mHasDep;
+
     LiveRouteClass() {
     }
+
+
 
     int getIndexNumber() {
         return mIndexNumber;
@@ -79,4 +84,19 @@ class LiveRouteClass {
         mSchDepDate = schDepDate;
     }
 
+    boolean isHasArr() {
+        return mHasArr;
+    }
+
+    void setHasArr(boolean hasArr) {
+        mHasArr = hasArr;
+    }
+
+    boolean isHasDep() {
+        return mHasDep;
+    }
+
+    void setHasDep(boolean hasDep) {
+        mHasDep = hasDep;
+    }
 }

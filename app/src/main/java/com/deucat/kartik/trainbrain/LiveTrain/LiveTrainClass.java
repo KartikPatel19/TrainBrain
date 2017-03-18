@@ -5,9 +5,17 @@ class LiveTrainClass {
 
     private String mPosition;
     private int mResponceCode;
+    private int mCurrentIndexNumber;
 
     LiveTrainClass() {    }
 
+     int getCurrentIndexNumber() {
+        return mCurrentIndexNumber;
+    }
+
+     void setCurrentIndexNumber(int currentIndexNumber) {
+        mCurrentIndexNumber = currentIndexNumber;
+    }
 
     String getPosition() {
         return mPosition;
