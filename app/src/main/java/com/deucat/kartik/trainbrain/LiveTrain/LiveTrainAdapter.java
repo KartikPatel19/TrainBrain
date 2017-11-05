@@ -39,28 +39,25 @@ class LiveTrainAdapter extends RecyclerView.Adapter<LiveTrainAdapter.LiveTrainHo
 
     class LiveTrainHolder extends RecyclerView.ViewHolder {
 
-        TextView mIndexNumber;
-        TextView mNameOfStation;
-        TextView mSchArr;
-        TextView mSchDep;
-        TextView mSchArrDate;
-        TextView mSchDepDate;
-
+        TextView mIndexNumber, mNameOfStation, mSchArr, mSchDep, mSchArrDate, mSchDepDate;
+        RelativeLayout mLayout;
         ImageView mImageView;
 
 
         LiveTrainHolder(View itemView) {
             super(itemView);
 
-            mIndexNumber = (TextView) itemView.findViewById(R.id.indexNumberLiveR);
+            mIndexNumber = itemView.findViewById(R.id.indexNumberLiveR);
 
-            mNameOfStation = (TextView) itemView.findViewById(R.id.nameTVLiveR);
-            mSchArr = (TextView) itemView.findViewById(R.id.schArrLiveR);
-            mSchDep = (TextView) itemView.findViewById(R.id.schDepLiveR);
-            mSchArrDate = (TextView) itemView.findViewById(R.id.actArrDate);
-            mSchDepDate = (TextView) itemView.findViewById(R.id.actDepDate);
+            mNameOfStation = itemView.findViewById(R.id.nameTVLiveR);
+            mSchArr = itemView.findViewById(R.id.schArrLiveR);
+            mSchDep = itemView.findViewById(R.id.schDepLiveR);
+            mSchArrDate = itemView.findViewById(R.id.actArrDate);
+            mSchDepDate = itemView.findViewById(R.id.actDepDate);
 
-            mImageView = (ImageView) itemView.findViewById(R.id.liveRHasPicture);
+            mLayout = itemView.findViewById(R.id.liveBG);
+
+            mImageView = itemView.findViewById(R.id.liveRHasPicture);
 
         }
 
@@ -77,12 +74,16 @@ class LiveTrainAdapter extends RecyclerView.Adapter<LiveTrainAdapter.LiveTrainHo
 
 
             if (liveRouteClass.isHasArr() && liveRouteClass.isHasDep()) {
-                mImageView.setImageResource(R.drawable.ic_directions_transit);
-            }else if(!liveRouteClass.isHasArr() && liveRouteClass.isHasDep()){
-                mImageView.setImageResource(R.drawable.ic_transfer_within_a_station);
-            }else if(!liveRouteClass.isHasArr() && !liveRouteClass.isHasDep()){
-                mImageView.setImageResource(R.drawable.flotting_button_img);
+                mLayout.setBackgroundColor(Color.parseColor("#A5D6A7"));
+            } else if (!liveRouteClass.isHasArr() && liveRouteClass.isHasDep()) {
+                mLayout.setBackgroundColor(Color.parseColor("#FFA726"));
+            } else if(!liveRouteClass.isHasArr() && !liveRouteClass.isHasDep()){
+                mLayout.setBackgroundColor(Color.parseColor("#FF5722"));
+            }else {
+                mLayout.setBackgroundColor(Color.parseColor("#757575"));
             }
+
+
         }
 
     }

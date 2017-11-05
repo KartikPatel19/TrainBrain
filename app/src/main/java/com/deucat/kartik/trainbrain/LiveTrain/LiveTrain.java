@@ -1,17 +1,23 @@
 package com.deucat.kartik.trainbrain.LiveTrain;
 
 
-import android.support.v7.app.AppCompatActivity;
+import android.annotation.SuppressLint;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.deucat.kartik.trainbrain.AlertDilog;
 
+import com.deucat.kartik.trainbrain.MainActivity;
 import com.deucat.kartik.trainbrain.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -30,8 +36,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class LiveTrain extends AppCompatActivity {
+import static com.google.android.gms.internal.zzahg.runOnUiThread;
 
+public class LiveTrain extends Fragment {
 
     LiveTrainClass mLiveTrainClass = new LiveTrainClass();
     LiveRouteClass[] mLiveRouteClass;
@@ -44,18 +51,19 @@ public class LiveTrain extends AppCompatActivity {
     AdView mAdView;
 
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_live_train);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        @SuppressLint("InflateParams")
+        View view = inflater.inflate(R.layout.activity_live_train, null);
 
-        mPosition = (TextView) findViewById(R.id.livePosition);
-        mEditText = (EditText) findViewById(R.id.liveEditText);
-        mButton = (Button) findViewById(R.id.liveOkButton);
+        mPosition = view.findViewById(R.id.livePosition);
+        mEditText = view.findViewById(R.id.liveEditText);
+        mButton = view.findViewById(R.id.liveOkButton);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.liveRecyclerView);
+        mRecyclerView = view.findViewById(R.id.liveRecyclerView);
 
-        mAdView = (AdView) findViewById(R.id.liveAdView);
+        mAdView = view.findViewById(R.id.liveAdView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -68,13 +76,18 @@ public class LiveTrain extends AppCompatActivity {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
                 String date = dateFormat.format(calendar.getTime());
-
-                String url = "http://api.railwayapi.com/live/train/" + trainNumber + "/doj/" + date + "/apikey/o9je768f/";
+                String url = "http://api.railwayapi.com/live/train/" + trainNumber + "/doj/" + date + "/apikey/" + MainActivity.API_KEY + "/";
 
                 getDataOverTheInternet(url);
             }
         });
 
+        return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     private void getDataOverTheInternet(String url) {
@@ -84,12 +97,13 @@ public class LiveTrain extends AppCompatActivity {
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
 
+                //noinspection ConstantConditions
                 String JSONData = response.body().string();
 
                 try {
@@ -113,16 +127,30 @@ public class LiveTrain extends AppCompatActivity {
 
     }
 
-    private LiveTrainClass parshLiveTrainClass(String JSONData) throws JSONException {
+    private void parshLiveTrainClass(String JSONData) throws JSONException {
 
-        JSONObject root = new JSONObject(JSONData);
+
+        final JSONObject root = new JSONObject(JSONData);
+        final int responceCode = root.getInt("response_code");
+        mLiveTrainClass.setResponceCode(responceCode);
+
+        if (responceCode != 200) {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    AlertDilog alertDilog = new AlertDilog();
+                    alertDilog.alertErrorToUser(responceCode, getActivity());
+                }
+            });
+            return;
+        }
+
         mLiveTrainClass.setPosition(root.getString("position"));
-        mLiveTrainClass.setResponceCode(root.getInt("response_code"));
 
         JSONObject current = root.getJSONObject("current_station");
         mLiveTrainClass.setCurrentIndexNumber(current.getInt("no"));
 
-        return mLiveTrainClass;
     }
 
     private LiveRouteClass[] parshLiveRouteClass(String JSONData) throws JSONException {
@@ -162,15 +190,10 @@ public class LiveTrain extends AppCompatActivity {
 
     private void updateUI() {
 
-        if (mLiveTrainClass.getResponceCode() != 200) {
-            alerAboutEror();
-
-        }
-
         mPosition.setText(mLiveTrainClass.getPosition());
 
         LiveTrainAdapter liveTrainAdapter = new LiveTrainAdapter(mLiveRouteClass);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity());
 
         mRecyclerView.setAdapter(liveTrainAdapter);
         mRecyclerView.setLayoutManager(manager);
@@ -178,9 +201,5 @@ public class LiveTrain extends AppCompatActivity {
 
     }
 
-    void alerAboutEror() {
-        AlertDilog alertDilog = new AlertDilog();
-        alertDilog.show(getFragmentManager(), "Error");
-    }
 }
 

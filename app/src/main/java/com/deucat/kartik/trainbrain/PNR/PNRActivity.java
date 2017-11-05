@@ -1,15 +1,21 @@
 package com.deucat.kartik.trainbrain.PNR;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.deucat.kartik.trainbrain.AlertDilog;
+import com.deucat.kartik.trainbrain.MainActivity;
 import com.deucat.kartik.trainbrain.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -26,7 +32,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class PNRActivity extends AppCompatActivity {
+import static com.google.android.gms.internal.zzahg.runOnUiThread;
+
+public class PNRActivity extends Fragment {
 
 
     String pnrNumber = "";
@@ -35,16 +43,7 @@ public class PNRActivity extends AppCompatActivity {
     PassengerClass[] mPassengerClasses;
     PNRClass mPNRClass = new PNRClass();
 
-    TextView mTrainName;
-    TextView mTrainNumber;
-    TextView mDOJ;
-    TextView mClassOfTrain;
-    TextView mNumberOfPassanger;
-    TextView mTrainStart;
-    TextView mTrainFrom;
-    TextView mBordingAt;
-    TextView mToStation;
-    TextView mReservation;
+    TextView mTrainName, mTrainNumber, mDOJ,mClassOfTrain,mNumberOfPassanger,mTrainStart,mTrainFrom,mBordingAt,mToStation,mReservation;
 
     EditText mEditText;
     Button mButton;
@@ -53,27 +52,32 @@ public class PNRActivity extends AppCompatActivity {
     AdView mAdView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pnr);
+    }
 
-        mTrainName = (TextView) findViewById(R.id.trainName);
-        mTrainNumber = (TextView) findViewById(R.id.trainNumberPNRTV);
-        mDOJ = (TextView) findViewById(R.id.trainDOJPNRTV);
-        mClassOfTrain = (TextView) findViewById(R.id.classOfPNRTV);
-        mNumberOfPassanger = (TextView) findViewById(R.id.passangerPNRTV);
-        mTrainStart = (TextView) findViewById(R.id.trainStartPNRTV);
-        mTrainFrom = (TextView) findViewById(R.id.fromPnrTV);
-        mBordingAt = (TextView) findViewById(R.id.bordingPNRTV);
-        mToStation = (TextView) findViewById(R.id.toStationPNRTV);
-        mReservation = (TextView) findViewById(R.id.reservationPNRTV);
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_pnr,null);
 
-        mEditText = (EditText) findViewById(R.id.pnrEditText);
-        mButton = (Button) findViewById(R.id.pnrOKButton);
+        mTrainName = view.findViewById(R.id.trainName);
+        mTrainNumber = view.findViewById(R.id.trainNumberPNRTV);
+        mDOJ = view.findViewById(R.id.trainDOJPNRTV);
+        mClassOfTrain = view.findViewById(R.id.classOfPNRTV);
+        mNumberOfPassanger = view.findViewById(R.id.passangerPNRTV);
+        mTrainStart = view.findViewById(R.id.trainStartPNRTV);
+        mTrainFrom = view.findViewById(R.id.fromPnrTV);
+        mBordingAt = view.findViewById(R.id.bordingPNRTV);
+        mToStation = view.findViewById(R.id.toStationPNRTV);
+        mReservation = view.findViewById(R.id.reservationPNRTV);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.pnrRecyclerView);
+        mEditText = view.findViewById(R.id.pnrEditText);
+        mButton = view.findViewById(R.id.pnrOKButton);
 
-        mAdView = (AdView) findViewById(R.id.pnrAdView);
+        mRecyclerView = view.findViewById(R.id.pnrRecyclerView);
+
+        mAdView = view.findViewById(R.id.pnrAdView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -81,14 +85,16 @@ public class PNRActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              pnrNumber =   mEditText.getText().toString();
-                url = "http://api.railwayapi.com/pnr_status/pnr/" + pnrNumber + "/apikey/o9je768f/";
+                pnrNumber =   mEditText.getText().toString();
+                url = "http://api.railwayapi.com/pnr_status/pnr/" + pnrNumber + "/apikey/"+ MainActivity.API_KEY+"/";
 
                 getJSONDataOverTheInterNet(url);
             }
         });
 
         getJSONDataOverTheInterNet(url);
+
+        return view;
     }
 
     private void getJSONDataOverTheInterNet(String url) {
@@ -189,20 +195,11 @@ public class PNRActivity extends AppCompatActivity {
         mReservation.setText(mPNRClass.getReservationName());
 
         PNRClassAdapter adapter = new PNRClassAdapter(mPassengerClasses);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
 
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        if (mPNRClass.getResponceCode()!=200){
-            alerAboutEror();
-        }
-
-    }
-
-    void alerAboutEror() {
-        AlertDilog alertDilog = new AlertDilog();
-        alertDilog.show(getFragmentManager(),"Error");
     }
 
     public void goBack(View view) {

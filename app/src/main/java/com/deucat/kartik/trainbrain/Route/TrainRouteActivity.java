@@ -1,17 +1,23 @@
 package com.deucat.kartik.trainbrain.Route;
 
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.deucat.kartik.trainbrain.AlertDilog;
+import com.deucat.kartik.trainbrain.MainActivity;
 import com.deucat.kartik.trainbrain.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -28,11 +34,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class TrainRouteActivity extends AppCompatActivity {
+import static com.google.android.gms.internal.zzahg.runOnUiThread;
+
+public class TrainRouteActivity extends Fragment {
     TrainClass trainClass = new TrainClass();
     RouteClass[] mRouteClasses;
-
-    String url = "http://api.railwayapi.com/route/train//apikey/o9je768f/";
 
 
     EditText mEditText;
@@ -43,16 +49,21 @@ public class TrainRouteActivity extends AppCompatActivity {
     AdView mAdView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.train_route_activity);
+    }
 
-        mTrainNameTv = (TextView) findViewById(R.id.routeTrainName);
-        mRecyclerView = (RecyclerView) findViewById(R.id.routeRecyclerView);
-        mEditText = (EditText) findViewById(R.id.routeTrainNumber);
-        mButton = (Button) findViewById(R.id.routeOkButton);
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.train_route_activity,null);
 
-        mAdView = (AdView) findViewById(R.id.routeAdView);
+        mTrainNameTv = view.findViewById(R.id.routeTrainName);
+        mRecyclerView = view.findViewById(R.id.routeRecyclerView);
+        mEditText =  view.findViewById(R.id.routeTrainNumber);
+        mButton =  view.findViewById(R.id.routeOkButton);
+
+        mAdView =  view.findViewById(R.id.routeAdView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -62,7 +73,7 @@ public class TrainRouteActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String trainNumber = mEditText.getText().toString();
-                url = "http://api.railwayapi.com/route/train/" + trainNumber + "/apikey/o9je768f/";
+                String url = "http://api.railwayapi.com/route/train/" + trainNumber + "/apikey/"+ MainActivity.API_KEY+"/";
 
                 try {
                     getJsonDataOverTheInternet(url);
@@ -73,6 +84,7 @@ public class TrainRouteActivity extends AppCompatActivity {
             }
         });
 
+        return view;
     }
 
     private void getJsonDataOverTheInternet(String url) throws IOException {
@@ -104,7 +116,7 @@ public class TrainRouteActivity extends AppCompatActivity {
 
 
                     } else {
-                        alerAboutEror();
+                        Toast.makeText(getContext(), "PLease Enter correct number of train", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
@@ -119,12 +131,11 @@ public class TrainRouteActivity extends AppCompatActivity {
         mTrainNameTv.setText(trainClass.getNameOfTrain());
 
         if (trainClass.getResponceCode() != 200) {
-            alerAboutEror();
-            Toast.makeText(TrainRouteActivity.this, "PLease Enter correct number of train", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "PLease Enter correct number of train", Toast.LENGTH_SHORT).show();
         }
 
         RouteClassAdapter mAdapter = new RouteClassAdapter(mRouteClasses);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
 
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
@@ -189,8 +200,5 @@ public class TrainRouteActivity extends AppCompatActivity {
         return routeClasses;
     }
 
-    void alerAboutEror() {
-        AlertDilog alertDilog = new AlertDilog();
-        alertDilog.show(getFragmentManager(), "Error");
-    }
+
 }

@@ -48,12 +48,12 @@ class RouteClassAdapter extends RecyclerView.Adapter<RouteClassAdapter.RouteView
 
          RouteViewHolder(View itemView) {
             super(itemView);
-            mIndexNumber = (TextView) itemView.findViewById(R.id.routeListIndexNumber);
-            mDistence = (TextView) itemView.findViewById(R.id.routeListDistance);
-            mSchArr = (TextView) itemView.findViewById(R.id.routeListSch);
-            mSchDep = (TextView) itemView.findViewById(R.id.routeListDep);
-            mNameOfStation = (TextView) itemView.findViewById(R.id.routeListStationName);
-            mNameOfState = (TextView) itemView.findViewById(R.id.routeListStateName);
+            mIndexNumber = itemView.findViewById(R.id.routeListIndexNumber);
+            mDistence = itemView.findViewById(R.id.routeListDistance);
+            mSchArr = itemView.findViewById(R.id.routeListSch);
+            mSchDep = itemView.findViewById(R.id.routeListDep);
+            mNameOfStation = itemView.findViewById(R.id.routeListStationName);
+            mNameOfState = itemView.findViewById(R.id.routeListStateName);
 
         }
 

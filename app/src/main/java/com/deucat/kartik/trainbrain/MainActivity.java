@@ -1,35 +1,41 @@
 package com.deucat.kartik.trainbrain;
 
-import android.app.TabActivity;
-import android.content.Intent;
-import android.graphics.Color;
+import android.content.Context;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TabHost;
-import android.widget.TextView;
 
 import com.deucat.kartik.trainbrain.LiveTrain.LiveTrain;
 import com.deucat.kartik.trainbrain.PNR.PNRActivity;
 import com.deucat.kartik.trainbrain.Route.TrainRouteActivity;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
-public class MainActivity extends TabActivity {
+import cn.refactor.lib.colordialog.PromptDialog;
+
+public class MainActivity extends AppCompatActivity {
+
+    public static String API_KEY = "m2i8khklf4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        TabHost mTabHost = getTabHost();
+        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
+                getSupportFragmentManager(), FragmentPagerItems.with(this)
+                .add("Live Train", LiveTrain.class)
+                .add("PNR Status", PNRActivity.class)
+                .add("Train Route", TrainRouteActivity.class)
+                .create());
 
-        mTabHost.addTab(mTabHost.newTabSpec("live").setIndicator("Live Train").setContent(new Intent(this, LiveTrain.class)));
-        mTabHost.addTab(mTabHost.newTabSpec("pnr").setIndicator("PNR").setContent(new Intent(this, PNRActivity.class)));
-        mTabHost.addTab(mTabHost.newTabSpec("route").setIndicator("Route").setContent(new Intent(this, TrainRouteActivity.class)));
-        mTabHost.setBackgroundColor(Color.parseColor("#388E3C"));
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        viewPager.setAdapter(adapter);
 
-        for(int i=0;i<mTabHost.getTabWidget().getChildCount();i++)
-        {
-            TextView tv = (TextView) mTabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
-            tv.setTextColor(Color.parseColor("#ffffff"));
-        }
-        mTabHost.setCurrentTab(0);
+        SmartTabLayout viewPagerTab = findViewById(R.id.viewpagertab);
+        viewPagerTab.setViewPager(viewPager);
     }
+
+
 }

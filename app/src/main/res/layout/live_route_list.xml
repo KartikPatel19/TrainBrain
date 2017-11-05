@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:background="#EEEEEE"
-                android:padding="8dp">
+    android:id="@+id/liveBG"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:background="#EEEEEE"
+    android:padding="8dp">
 
     <RelativeLayout
         android:id="@+id/liveMain"
@@ -19,7 +20,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:text="1"
-            android:textSize="30sp"/>
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/nameTVLiveR"
@@ -28,15 +29,14 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:text="Ankleshwar JN"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/liveRHasPicture"
-            android:layout_below="@+id/indexNumberLiveR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_directions_transit"/>
-
+            android:layout_below="@+id/indexNumberLiveR"
+            android:src="@drawable/ic_directions_transit" />
 
 
         <LinearLayout
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="TextView"/>
+                    android:text="TextView" />
 
                 <TextView
                     android:id="@+id/schDepLiveR"
@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="TextView"/>
+                    android:text="TextView" />
             </LinearLayout>
 
 
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="TextView"/>
+                    android:text="TextView" />
 
                 <TextView
                     android:id="@+id/actDepDate"
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="TextView"/>
+                    android:text="TextView" />
             </LinearLayout>
 
         </LinearLayout>
