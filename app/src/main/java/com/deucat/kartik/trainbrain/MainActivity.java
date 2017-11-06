@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.deucat.kartik.trainbrain.LiveTrain.LiveTrain;
+import com.deucat.kartik.trainbrain.MainWork.MainFragment;
 import com.deucat.kartik.trainbrain.PNR.PNRActivity;
 import com.deucat.kartik.trainbrain.Route.TrainRouteActivity;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
+                .add("Arability", MainFragment.class)
                 .add("Live Train", LiveTrain.class)
                 .add("PNR Status", PNRActivity.class)
                 .add("Train Route", TrainRouteActivity.class)
