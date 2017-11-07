@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,7 +14,6 @@ import com.deucat.kartik.trainbrain.R;
 class LiveTrainAdapter extends RecyclerView.Adapter<LiveTrainAdapter.LiveTrainHolder> {
 
     private LiveRouteClass[] mRouteClasses;
-    private LiveTrainClass mLiveTrainClass;
 
     LiveTrainAdapter(LiveRouteClass[] routeClasses) {
         mRouteClasses = routeClasses;

@@ -1,5 +1,6 @@
 package com.deucat.kartik.trainbrain.PNR;
 
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,11 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.deucat.kartik.trainbrain.AlertDilog;
@@ -51,6 +54,9 @@ public class PNRActivity extends Fragment {
     RecyclerView mRecyclerView;
     AdView mAdView;
 
+    LinearLayout mLayout;
+    ProgressDialog mDialog;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +78,10 @@ public class PNRActivity extends Fragment {
         mToStation = view.findViewById(R.id.toStationPNRTV);
         mReservation = view.findViewById(R.id.reservationPNRTV);
 
+        mLayout = view.findViewById(R.id.pnrMainView);
+        mDialog = new ProgressDialog(getActivity());
+        mDialog.hide();
+
         mEditText = view.findViewById(R.id.pnrEditText);
         mButton = view.findViewById(R.id.pnrOKButton);
 
@@ -86,8 +96,13 @@ public class PNRActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 pnrNumber =   mEditText.getText().toString();
-                url = "http://api.railwayapi.com/pnr_status/pnr/" + pnrNumber + "/apikey/"+ MainActivity.API_KEY+"/";
 
+                if (TextUtils.isEmpty(pnrNumber)){
+                    return;
+                }
+
+                url = "http://api.railwayapi.com/pnr_status/pnr/" + pnrNumber + "/apikey/"+ MainActivity.API_KEY+"/";
+                mDialog.show();
                 getJSONDataOverTheInterNet(url);
             }
         });
@@ -136,6 +151,13 @@ public class PNRActivity extends Fragment {
 
         JSONObject root = new JSONObject(JSONData);
 
+        int code = root.getInt("response_code");
+        if (code!=200){
+            AlertDilog dilog = new AlertDilog();
+            dilog.alertErrorToUser(code,getActivity());
+            return null;
+        }
+
         mPNRClass.setResponceCode(root.getInt("response_code"));
         mPNRClass.setTrainName(root.getString("train_name"));
         mPNRClass.setTrainNumber(root.getString("train_num"));
@@ -183,6 +205,8 @@ public class PNRActivity extends Fragment {
 
     private void updateUI() {
 
+        mRecyclerView.setVisibility(View.VISIBLE);
+
         mTrainName.setText(mPNRClass.getTrainName());
         mTrainNumber.setText(mPNRClass.getTrainNumber());
         mDOJ.setText(mPNRClass.getDOJ());
@@ -202,6 +226,4 @@ public class PNRActivity extends Fragment {
 
     }
 
-    public void goBack(View view) {
-    }
 }

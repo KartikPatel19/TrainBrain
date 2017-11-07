@@ -3,12 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.deucat.kartik.trainbrain.GetFragment">
+    android:background="#E8F5E9"
+    tools:context="com.deucat.kartik.trainbrain.MainWork.GetFragment"
+    tools:layout_editor_absoluteY="25dp">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/getSourceNameLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="67dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="109dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,6 +30,8 @@
         android:id="@+id/getDestNameLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="67dp"
+        android:layout_marginStart="67dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/getSourceNameLayout">
@@ -39,26 +46,23 @@
 
     <Button
         android:id="@+id/getDateBtn"
+        style="@android:style/Widget.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/getDestNameLayout"
+        android:text="Date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/getDestNameLayout" />
 
     <Button
         android:id="@+id/getOkBtn"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/getDestNameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/getDestNameLayout" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="Show Train"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getDateBtn" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

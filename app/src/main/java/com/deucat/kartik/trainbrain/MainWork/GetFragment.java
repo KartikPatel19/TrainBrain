@@ -1,10 +1,12 @@
-package com.deucat.kartik.trainbrain;
+package com.deucat.kartik.trainbrain.MainWork;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.deucat.kartik.trainbrain.AlertDilog;
+import com.deucat.kartik.trainbrain.MainActivity;
+import com.deucat.kartik.trainbrain.R;
+
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -43,6 +50,7 @@ public class GetFragment extends Fragment {
     DatePickerDialog.OnDateSetListener mDate;
     boolean mIsDateSelected = false;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +59,7 @@ public class GetFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_get, container, false);
-        mCalendar=Calendar.getInstance();
+        mCalendar = Calendar.getInstance();
 
         mSourceCodeEt = view.findViewById(R.id.getSourceName);
         mDestCodeEt = view.findViewById(R.id.getDestName);
@@ -126,6 +134,35 @@ public class GetFragment extends Fragment {
 
                 //noinspection ConstantConditions
                 String JSONData = response.body().string();
+
+
+                JSONObject object = null;
+                try {
+                    object = new JSONObject(JSONData);
+                    final int responceCode = object.getInt("response_code");
+
+                    if (responceCode != 200) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                new AlertDilog().alertErrorToUser(responceCode, getActivity());
+                            }
+                        });
+                        return;
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Fragment fragment = new PutFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("Data", JSONData);
+                fragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.mainFullFragment, fragment);
+                fragmentTransaction.commit();
+
 
             }
         });

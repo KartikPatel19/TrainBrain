@@ -2,6 +2,7 @@ package com.deucat.kartik.trainbrain.LiveTrain;
 
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
@@ -50,12 +51,17 @@ public class LiveTrain extends Fragment {
     RecyclerView mRecyclerView;
     AdView mAdView;
 
+    ProgressDialog mDialog;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams")
         View view = inflater.inflate(R.layout.activity_live_train, null);
+
+        mDialog = new ProgressDialog(getActivity());
+        mDialog.hide();
 
         mPosition = view.findViewById(R.id.livePosition);
         mEditText = view.findViewById(R.id.liveEditText);
@@ -77,6 +83,7 @@ public class LiveTrain extends Fragment {
 
                 String date = dateFormat.format(calendar.getTime());
                 String url = "http://api.railwayapi.com/live/train/" + trainNumber + "/doj/" + date + "/apikey/" + MainActivity.API_KEY + "/";
+                mDialog.show();
 
                 getDataOverTheInternet(url);
             }
@@ -192,9 +199,9 @@ public class LiveTrain extends Fragment {
 
         mPosition.setText(mLiveTrainClass.getPosition());
 
+        mDialog.hide();
         LiveTrainAdapter liveTrainAdapter = new LiveTrainAdapter(mLiveRouteClass);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity());
-
         mRecyclerView.setAdapter(liveTrainAdapter);
         mRecyclerView.setLayoutManager(manager);
 

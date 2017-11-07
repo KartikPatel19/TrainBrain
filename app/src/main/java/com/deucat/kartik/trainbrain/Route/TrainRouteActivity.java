@@ -1,6 +1,7 @@
 package com.deucat.kartik.trainbrain.Route;
 
 
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +50,8 @@ public class TrainRouteActivity extends Fragment {
 
     AdView mAdView;
 
+    ProgressDialog mDialog;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +61,8 @@ public class TrainRouteActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.train_route_activity,null);
+        mDialog = new ProgressDialog(getActivity());
+        mDialog.hide();
 
         mTrainNameTv = view.findViewById(R.id.routeTrainName);
         mRecyclerView = view.findViewById(R.id.routeRecyclerView);
@@ -73,6 +79,11 @@ public class TrainRouteActivity extends Fragment {
             public void onClick(View v) {
 
                 String trainNumber = mEditText.getText().toString();
+
+                if (TextUtils.isEmpty(trainNumber)){
+                    return;
+                }
+                mDialog.show();
                 String url = "http://api.railwayapi.com/route/train/" + trainNumber + "/apikey/"+ MainActivity.API_KEY+"/";
 
                 try {
@@ -128,11 +139,8 @@ public class TrainRouteActivity extends Fragment {
     }
 
     private void updateUI() {
+        mDialog.hide();
         mTrainNameTv.setText(trainClass.getNameOfTrain());
-
-        if (trainClass.getResponceCode() != 200) {
-            Toast.makeText(getContext(), "PLease Enter correct number of train", Toast.LENGTH_SHORT).show();
-        }
 
         RouteClassAdapter mAdapter = new RouteClassAdapter(mRouteClasses);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
@@ -148,6 +156,14 @@ public class TrainRouteActivity extends Fragment {
         JSONObject data = mainData.getJSONObject("train");
         trainClass.setNameOfTrain(data.getString("name"));
         trainClass.setResponceCode(mainData.getInt("response_code"));
+
+        int code = mainData.getInt("response_code");
+
+        if (code!=200){
+            AlertDilog dilog = new AlertDilog();
+            dilog.alertErrorToUser(code,getActivity());
+            return null;
+        }
 
 //        JSONArray classesOfTrain = data.getJSONArray("classes");
 //        String[] classAva = new String[classesOfTrain.length()];
