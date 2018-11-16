@@ -6,10 +6,10 @@ internal class PNRClass {
     var trainNumber: String? = null
     var doj: String? = null
     var className: String? = null
-    var totalPassanger: Int = 0
+    var totalPassenger: Int = 0
     var fromStationName: String? = null
     var boardingPointName: String? = null
     var toStationName: String? = null
     var reservationName: String? = null
-    var responceCode: Int = 0
+    var responseCode: Int = 0
 }

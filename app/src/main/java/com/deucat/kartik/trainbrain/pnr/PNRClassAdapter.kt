@@ -27,22 +27,14 @@ internal class PNRClassAdapter(private val mPassengerClasses: Array<PassengerCla
 
     internal inner class PNRViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var mIndexNumber: TextView
-        var mBookingStatus: TextView
-        var mCurrentStatus: TextView
-        var mCochePosition: TextView
-
-        init {
-            mIndexNumber = itemView.findViewById(R.id.indexPNRTVL)
-            mBookingStatus = itemView.findViewById(R.id.bookingStatusPNRTVL)
-            mCurrentStatus = itemView.findViewById(R.id.curruntCochePNRTVL)
-            mCochePosition = itemView.findViewById(R.id.cochePositionPNRTVL)
-
-        }
+        private var mIndexNumber: TextView = itemView.findViewById(R.id.indexPNRTVL)
+        private var mBookingStatus: TextView = itemView.findViewById(R.id.bookingStatusPNRTVL)
+        private var mCurrentStatus: TextView = itemView.findViewById(R.id.curruntCochePNRTVL)
+        private var mCoachedPosition: TextView = itemView.findViewById(R.id.cochePositionPNRTVL)
 
         fun bindPNR(passengerClass: PassengerClass) {
-            mIndexNumber.text = passengerClass.indexNumber.toString() + ""
-            mCochePosition.text = passengerClass.coachPosition.toString() + ""
+            mIndexNumber.text = passengerClass.indexNumber.toString()
+            mCoachedPosition.text = passengerClass.coachPosition.toString()
             mCurrentStatus.text = passengerClass.currentStatus
             mBookingStatus.text = passengerClass.bookingStatus
         }

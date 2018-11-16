@@ -1,10 +1,9 @@
-package com.deucat.kartik.trainbrain.PNR
+package com.deucat.kartik.trainbrain.pnr
 
 
 internal class PassengerClass {
-
     var indexNumber: Int = 0
     var bookingStatus: String? = null
-    var curruntStatus: String? = null
-    var cochePosition: Int = 0
+    var currentStatus: String? = null
+    var coachPosition: Int = 0
 }
