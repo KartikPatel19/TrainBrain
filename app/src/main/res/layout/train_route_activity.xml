@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFFFFF"
-    tools:context="com.deucat.kartik.trainbrain.Route.TrainRouteActivity">
+    tools:context="com.deucat.kartik.trainbrain.route.TrainRouteActivity">
 
 
     <LinearLayout

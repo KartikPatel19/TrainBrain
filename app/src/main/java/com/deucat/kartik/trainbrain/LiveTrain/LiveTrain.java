@@ -81,7 +81,7 @@ public class LiveTrain extends Fragment {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
                 String date = dateFormat.format(calendar.getTime());
-                String url = "http://api.railwayapi.com/live/train/" + trainNumber + "/doj/" + date + "/apikey/" + MainActivity.API_KEY + "/";
+                String url = "http://api.railwayapi.com/live/train/" + trainNumber + "/doj/" + date + "/apikey/" + MainActivity.Companion.getAPI_KEY() + "/";
                 mDialog.show();
 
                 getDataOverTheInternet(url);

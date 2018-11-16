@@ -99,7 +99,7 @@ public class PNRActivity extends Fragment {
                     return;
                 }
 
-                url = "http://api.railwayapi.com/pnr_status/pnr/" + pnrNumber + "/apikey/"+ MainActivity.API_KEY+"/";
+                url = "http://api.railwayapi.com/pnr_status/pnr/" + pnrNumber + "/apikey/"+ MainActivity.Companion.getAPI_KEY() +"/";
                 mDialog.show();
                 getJSONDataOverTheInterNet(url);
             }

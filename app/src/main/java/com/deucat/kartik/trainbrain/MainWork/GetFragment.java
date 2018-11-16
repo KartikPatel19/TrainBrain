@@ -116,7 +116,7 @@ public class GetFragment extends Fragment {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String date = dateFormat.format(mCalendar.getTime());
-        String url = "http://api.railwayapi.com/v2/between/source/" + srcCode + "/dest/" + dstCode + "/date/" + date + "/apikey/" + MainActivity.API_KEY + "/";
+        String url = "http://api.railwayapi.com/v2/between/source/" + srcCode + "/dest/" + dstCode + "/date/" + date + "/apikey/" + MainActivity.Companion.getAPI_KEY() + "/";
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(url).build();
