@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.deucat.kartik.trainbrain.AlertDilog;
 import com.deucat.kartik.trainbrain.MainActivity;
 import com.deucat.kartik.trainbrain.R;
 import com.google.android.gms.ads.AdRequest;
@@ -36,7 +35,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.google.android.gms.internal.zzahg.runOnUiThread;
 
 public class TrainRouteActivity extends Fragment {
     TrainClass trainClass = new TrainClass();
@@ -118,12 +116,6 @@ public class TrainRouteActivity extends Fragment {
                         mRouteClasses = parshRouteClass(JSONData);
                         parshTrainClass(JSONData);
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                updateUI();
-                            }
-                        });
 
 
                     } else {
@@ -157,13 +149,6 @@ public class TrainRouteActivity extends Fragment {
         trainClass.setNameOfTrain(data.getString("name"));
         trainClass.setResponceCode(mainData.getInt("response_code"));
 
-        int code = mainData.getInt("response_code");
-
-        if (code!=200){
-            AlertDilog dilog = new AlertDilog();
-            dilog.alertErrorToUser(code,getActivity());
-            return null;
-        }
 
 //        JSONArray classesOfTrain = data.getJSONArray("classes");
 //        String[] classAva = new String[classesOfTrain.length()];

@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.deucat.kartik.trainbrain.AlertDilog;
 import com.deucat.kartik.trainbrain.MainActivity;
 import com.deucat.kartik.trainbrain.R;
 import com.google.android.gms.ads.AdRequest;
@@ -35,7 +34,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.google.android.gms.internal.zzahg.runOnUiThread;
 
 public class PNRActivity extends Fragment {
 
@@ -131,14 +129,6 @@ public class PNRActivity extends Fragment {
 
                         parshPNRClass(JSONData);
                         mPassengerClasses = parshPassangerClass(JSONData);
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                updateUI();
-                            }
-                        });
-
                     }
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
@@ -152,11 +142,6 @@ public class PNRActivity extends Fragment {
         JSONObject root = new JSONObject(JSONData);
 
         int code = root.getInt("response_code");
-        if (code!=200){
-            AlertDilog dilog = new AlertDilog();
-            dilog.alertErrorToUser(code,getActivity());
-            return null;
-        }
 
         mPNRClass.setResponceCode(root.getInt("response_code"));
         mPNRClass.setTrainName(root.getString("train_name"));

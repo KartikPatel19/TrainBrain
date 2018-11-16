@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.deucat.kartik.trainbrain.AlertDilog;
 
 import com.deucat.kartik.trainbrain.MainActivity;
 import com.deucat.kartik.trainbrain.R;
@@ -30,6 +29,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -37,7 +37,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.google.android.gms.internal.zzahg.runOnUiThread;
 
 public class LiveTrain extends Fragment {
 
@@ -118,7 +117,7 @@ public class LiveTrain extends Fragment {
 
                     mLiveRouteClass = parshLiveRouteClass(JSONData);
 
-                    runOnUiThread(new Runnable() {
+                    Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             updateUI();
@@ -143,11 +142,10 @@ public class LiveTrain extends Fragment {
 
         if (responceCode != 200) {
 
-            runOnUiThread(new Runnable() {
+            Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    AlertDilog alertDilog = new AlertDilog();
-                    alertDilog.alertErrorToUser(responceCode, getActivity());
+
                 }
             });
             return;

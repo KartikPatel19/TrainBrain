@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import com.deucat.kartik.trainbrain.AlertDilog;
 import com.deucat.kartik.trainbrain.MainActivity;
 import com.deucat.kartik.trainbrain.R;
 
@@ -34,7 +33,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.google.android.gms.internal.zzahg.runOnUiThread;
 
 
 public class GetFragment extends Fragment {
@@ -141,15 +139,6 @@ public class GetFragment extends Fragment {
                     object = new JSONObject(JSONData);
                     final int responceCode = object.getInt("response_code");
 
-                    if (responceCode != 200) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                new AlertDilog().alertErrorToUser(responceCode, getActivity());
-                            }
-                        });
-                        return;
-                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
